@@ -9,8 +9,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   <div class="error-page">
     <section class="error-hero">
       <div class="error-content">
-        <div class="error-code" data-hero-reveal data-delay="100">404</div>
-        <h1 data-hero-reveal data-delay="250">Page not found</h1>
+        <h1 class="error-code" data-hero-reveal data-delay="100">404</h1>
+        <h2 data-hero-reveal data-delay="250">Page not found</h2>
         <p data-hero-reveal data-delay="250">The page you are looking for doesn't exist or has been moved.</p>
         <a class="button error-button" href="/" data-motion-button data-hero-reveal data-delay="400">
           <span class="error-button__icon-window" aria-hidden="true">
@@ -36,7 +36,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   .error-hero { min-height: 606px; padding-top: 120px; }
   .error-content { width: min(calc(100% - 60px), 700px); margin-inline: auto; text-align: center; }
   .error-code { color: #674cd0; background: linear-gradient(280deg, #a8a8ff 0%, #674cd0 100%); background-clip: text; -webkit-text-fill-color: transparent; font-family: "Stack Sans Headline", "Stack Sans Headline Placeholder", sans-serif; font-size: 220px; font-weight: 500; line-height: .7; letter-spacing: normal; }
-  .error-content h1 { margin-top: 34px; font-size: 28px; line-height: 1.2; }
+  .error-content h2 { margin-top: 34px; font-size: 28px; line-height: 1.2; }
   .error-content p { margin-top: 4px; color: #545454; font-size: 20px; line-height: 1.4; text-wrap: balance; }
   :global(.error-content .error-button) {
     display: flex;
@@ -84,7 +84,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   @media (max-width: 1199px) {
     .error-hero { min-height: 503px; padding-top: 140px; }
     .error-code { font-size: 160px; line-height: .7; }
-    .error-content h1 { margin-top: 34px; font-size: 26px; line-height: 1.2; }
+    .error-content h2 { margin-top: 34px; font-size: 26px; line-height: 1.2; }
     .error-content p { margin-top: 4px; font-size: 20px; line-height: 1.4; }
     :global(.error-content .error-button) { width: 176.28px; min-height: 44px; gap: 10px; padding: 4px 14px 4px 4px; border-radius: 16px; font-size: 18px; line-height: 23.4px; }
     :global(.error-button__icon-window) { width: 36px; height: 36px; border-radius: 10px; }
@@ -102,7 +102,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     .error-hero { min-height: 0; padding: 102px 0 60px; }
     .error-content { width: min(calc(100% - 60px), 700px); }
     .error-code { font-size: 100px; line-height: .7; letter-spacing: normal; }
-    .error-content h1 { margin-top: 20px; font-size: 24px; line-height: 1.2; }
+    .error-content h2 { margin-top: 20px; font-size: 24px; line-height: 1.2; }
     .error-content p { max-width: none; margin: 4px auto 0; font-size: 18px; line-height: 1.4; }
     :global(.error-content .error-button) { width: 176.28px; min-height: 44px; margin-top: 16px; font-size: 16px; }
   }

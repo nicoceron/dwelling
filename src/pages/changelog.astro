@@ -78,15 +78,15 @@ const releases = [
     <div class="changelog-list">
       <div class="changelog-container changelog-list__container">
         {
-          releases.map((release) => (
-            <article class="release" data-reveal>
-              <header class="release__header">
-                <div class="release__date" data-reveal-child data-reveal-delay="350">
+          releases.map((release, index) => (
+            <article class="release">
+              <header class="release__header" data-hero-reveal={index === 0 ? true : undefined} data-delay={index === 0 ? "300" : undefined} data-reveal={index > 0 ? true : undefined}>
+                <div class="release__date" data-hero-reveal={index === 0 ? true : undefined} data-delay={index === 0 ? "350" : undefined} data-reveal={index > 0 ? true : undefined}>
                   <span class="release__dot" aria-hidden="true"></span>
                   <span>{release.date}</span>
                   <span class="release__dot" aria-hidden="true"></span>
                 </div>
-                <h2 data-reveal-child data-reveal-delay="450">{release.version}</h2>
+                <h2 data-hero-reveal={index === 0 ? true : undefined} data-delay={index === 0 ? "450" : undefined} data-reveal={index > 0 ? true : undefined}>{release.version}</h2>
               </header>
               <div class="release__body">
                 <img
@@ -94,13 +94,14 @@ const releases = [
                   width="700"
                   height="394"
                   alt="BG"
-                  data-reveal-child
-                  data-reveal-delay="500"
+                  data-hero-reveal={index === 0 ? true : undefined}
+                  data-delay={index === 0 ? "500" : undefined}
+                  data-reveal={index > 0 ? true : undefined}
                 />
-                <div class="release__groups" data-reveal-child data-reveal-delay="600">
+                <div class="release__groups">
                   {
                     release.groups.map((group) => (
-                      <section class="release__group">
+                      <section class="release__group" data-reveal>
                         <h3>{group.title}</h3>
                         <div class="release__items">
                           {group.items.map((item) => (

@@ -6,12 +6,12 @@ const waitlistFormEndpoint = import.meta.env.PUBLIC_WAITLIST_FORM_ENDPOINT?.trim
 
 <BaseLayout title="Worklane – Workflow Automation SaaS Framer Template" description="Launch an automation-focused SaaS website with Worklane. A modern Framer template designed for clarity, speed, and growth.">
   <div class="waitlist-page">
-    <section class="waitlist-hero" data-reveal>
+    <section class="waitlist-hero">
       <div class="waitlist-hero__inner">
-        <div class="waitlist-intro" data-reveal-child data-reveal-delay="100"><h1>Join the AI workflow automation waitlist</h1><p>Be among the first to experience a smarter way to automate workflows, manage operations with AI-powered tools.</p></div>
-        <form class="waitlist-form" action={waitlistFormEndpoint || undefined} method="POST" data-local-form data-reveal-child data-reveal-delay="350">
+        <div class="waitlist-intro"><h1 data-hero-reveal data-delay="100">Join the AI workflow automation waitlist</h1><p data-hero-reveal data-delay="200">Be among the first to experience a smarter way to automate workflows, manage operations with AI-powered tools.</p></div>
+        <form class="waitlist-form" action={waitlistFormEndpoint || undefined} method="POST" data-local-form data-hero-reveal data-delay="300">
           <div class="waitlist-input"><label class="sr-only" for="waitlist-email">Email address</label><input id="waitlist-email" type="email" name="Email address" placeholder="Enter your email" required /></div>
-          <Button type="submit" icon="→">Join the waitlist</Button><p class="waitlist-note">Early access. No spam</p><p class="form-status" aria-live="polite"></p>
+          <Button type="submit" icon="→">Join the waitlist</Button><p class="waitlist-note" data-hero-reveal data-delay="200">Early access. No spam</p><p class="form-status" aria-live="polite"></p>
         </form>
       </div>
     </section>

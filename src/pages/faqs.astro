@@ -82,14 +82,12 @@ const description =
           </div>
           <a class="faq-cta__button" href="/waitlist">
             <span class="faq-cta__icon" aria-hidden="true">
-              <img
-                src="/assets/framerusercontent.com/images/62ZeXg28hbWJRFzyMfxnqWR6w.svg"
-                width="17"
-                height="15"
-                alt=""
-              />
+              <span class="faq-cta__icon-wrap">
+                <img class="faq-cta__icon-hover" src="/assets/framerusercontent.com/images/62ZeXg28hbWJRFzyMfxnqWR6w.svg" width="17" height="15" alt="" />
+                <img class="faq-cta__icon-default" src="/assets/framerusercontent.com/images/62ZeXg28hbWJRFzyMfxnqWR6w.svg" width="17" height="15" alt="" />
+              </span>
             </span>
-            <span class="faq-cta__label">Join the waitlist</span>
+            <span class="faq-cta__label-window"><span class="faq-cta__label">Join the waitlist</span><span class="faq-cta__label faq-cta__label--hover" aria-hidden="true">Join the waitlist</span></span>
           </a>
         </div>
       </div>
@@ -232,25 +230,18 @@ const description =
     width: 208.56px;
     height: 52px;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 14px;
     padding: 4px 18px 4px 4px;
     overflow: clip;
-    border: 1px solid var(--ink);
+    border: 0;
     border-radius: 16px;
     background: linear-gradient(180deg, var(--ink), #363b3c);
     color: var(--paper);
-    font-family: "Stack Sans Headline", sans-serif;
-    font-size: 16px;
+    font-family: "Inter Display", sans-serif;
+    font-size: 18px;
     font-weight: 600;
-    line-height: 1.2;
-    transition: filter 350ms ease, transform 350ms ease;
-  }
-
-  .faq-cta__button:hover,
-  .faq-cta__button:focus-visible {
-    filter: brightness(1.08);
-    transform: translateY(-1px);
+    line-height: 23.4px;
   }
 
   .faq-cta__icon {
@@ -261,14 +252,44 @@ const description =
     place-items: center;
     border-radius: 12px;
     background: linear-gradient(#fff, #c9c9c9);
+    overflow: hidden;
+    transition: transform 350ms cubic-bezier(.44, 0, .56, 1);
+  }
+
+  .faq-cta__icon-wrap {
+    position: relative;
+    display: block;
+    width: 17px;
+    height: 15px;
+    transition: transform 350ms cubic-bezier(.44, 0, .56, 1);
   }
 
   .faq-cta__icon img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 17px;
     height: 15px;
+    transition: transform 350ms cubic-bezier(.44, 0, .56, 1);
   }
 
-  .faq-cta__label {
+  .faq-cta__icon-hover { transform: translateX(-37px); }
+  .faq-cta__label-window { position: relative; display: block; height: 24px; overflow: hidden; }
+  .faq-cta__label { display: block; height: 23.4px; line-height: 23.4px; transition: transform 350ms cubic-bezier(.44, 0, .56, 1); }
+  .faq-cta__label--hover { position: absolute; top: 53.4px; left: 0; }
+  @media (min-width: 1200px) {
+    .faq-cta__button:hover .faq-cta__icon,
+    .faq-cta__button:focus-visible .faq-cta__icon { transform: rotate(90deg); }
+    .faq-cta__button:hover .faq-cta__icon-wrap,
+    .faq-cta__button:focus-visible .faq-cta__icon-wrap { transform: rotate(-90deg); }
+    .faq-cta__button:hover .faq-cta__icon-hover,
+    .faq-cta__button:focus-visible .faq-cta__icon-hover { transform: translateX(0); }
+    .faq-cta__button:hover .faq-cta__icon-default,
+    .faq-cta__button:focus-visible .faq-cta__icon-default { transform: translateX(37px); }
+    .faq-cta__button:hover .faq-cta__label,
+    .faq-cta__button:focus-visible .faq-cta__label { transform: translateY(-53.4px); }
+  }
+  .faq-cta__label-window {
     white-space: nowrap;
   }
 

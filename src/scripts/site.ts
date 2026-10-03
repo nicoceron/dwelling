@@ -468,8 +468,10 @@ function setupFeatureCycles() {
     };
 
     const advance = async () => {
-      const nextIndex = mode === "client-orbit" ? index + 1 : (index + 1) % itemCount;
-      if (mode === "client-orbit" && nextIndex >= itemCount) return;
+      // The client orbit briefly resets its wheel after 04, then enters 02
+      // on the same tick. The reset state is not held for another interval.
+      const orbitReset = mode === "client-orbit" && index === itemCount - 1;
+      const nextIndex = orbitReset ? 1 : (index + 1) % itemCount;
       setIdentity(nextIndex);
 
       if (mode === "task-stack") {
@@ -505,6 +507,15 @@ function setupFeatureCycles() {
       }
 
       if (mode === "client-orbit" && orbitTrack) {
+        if (orbitReset) {
+          cycle.setAttribute("data-instant-reset", "");
+          orbitTrack.style.setProperty("--orbit-rotation", "0deg");
+          orbitIcons.forEach((icon) => icon.style.setProperty("--orbit-icon-rotation", "0deg"));
+          // Commit the source's instantaneous wheel reset before the next
+          // 45-degree transition starts.
+          void orbitTrack.offsetWidth;
+          cycle.removeAttribute("data-instant-reset");
+        }
         const degrees = nextIndex * 45;
         orbitTrack.style.setProperty("--orbit-rotation", `${degrees}deg`);
         orbitIcons.forEach((icon) => icon.style.setProperty("--orbit-icon-rotation", `${-degrees}deg`));
@@ -519,7 +530,7 @@ function setupFeatureCycles() {
           previousState.setAttribute("aria-hidden", "true");
         }
         index = nextIndex;
-        if (nextIndex < itemCount - 1) schedule();
+        schedule();
         return;
       }
 

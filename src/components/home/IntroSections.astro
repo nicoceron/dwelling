@@ -546,6 +546,8 @@ const teamMembers = [
   .client-dashboard__state.is-active { opacity: 1; transform: translateX(-50%) translateY(0); }
   .client-dashboard__orb { position: absolute; z-index: 1; bottom: -260px; left: 50%; width: 380px; height: 380px; border: 2px dashed rgba(255,255,255,.95); border-radius: 50%; opacity: 1; background: linear-gradient(180deg, #dee6eb 0%, rgba(255,255,255,0) 100%); transform: translateX(-50%); }
   .client-dashboard__orb-track { --orbit-rotation: 0deg; position: absolute; inset: 0; border-radius: 50%; transform: rotate(var(--orbit-rotation)); transition: transform 350ms cubic-bezier(.44,0,.56,1); }
+  [data-feature-cycle="client-orbit"][data-instant-reset] .client-dashboard__orb-track,
+  [data-feature-cycle="client-orbit"][data-instant-reset] .client-dashboard__orb-track > span { transition-duration: 0ms; }
   .client-dashboard__orb-track::before, .client-dashboard__orb-track::after { position: absolute; top: 50%; left: 50%; width: 112%; height: 1px; background: rgba(103,76,208,.16); content: ""; transform: translate(-50%,-50%); }.client-dashboard__orb-track::after { transform: translate(-50%,-50%) rotate(90deg); }
   .client-dashboard__orb-track > span { --orbit-icon-rotation: 0deg; position: absolute; z-index: 2; top: calc(50% - 20px); left: calc(50% - 20px); display: grid; width: 40px; height: 40px; place-items: center; border-radius: 50%; opacity: .72; transform: rotate(var(--orbit-icon-angle)) translateY(-168px) rotate(var(--orbit-icon-counter-angle)) rotate(var(--orbit-icon-rotation)) scale(.8); transition: transform 350ms cubic-bezier(.44,0,.56,1), opacity 350ms cubic-bezier(.44,0,.56,1); }.client-dashboard__orb-track > span.is-active { opacity: 1; transform: rotate(var(--orbit-icon-angle)) translateY(-168px) rotate(var(--orbit-icon-counter-angle)) rotate(var(--orbit-icon-rotation)) scale(1); }.client-dashboard__orb-track > span img { width: 40px; height: 40px; object-fit: contain; }
   @media (max-width: 1199px) { .hero__copy { width: 55%; padding-left: 30px; transform: none; }.hero__copy > h1:first-of-type { display: none !important; }.hero__copy > h1:nth-of-type(2) { display: flex; max-width: 388.23px; flex-direction: column; gap: 6px; font-size: 50px; line-height: 1.1; letter-spacing: 0; }.hero__copy > h1:nth-of-type(2) > span:not(.hero__rotator) { display: block; white-space: nowrap; }.hero__copy > h1:nth-of-type(2) .hero__rotator { display: block; width: 254px; height: 55px; flex: 0 0 auto; }.hero__stage { min-height: 869px; }.hero__art { top: 41%; right: -46%; width: 86%; }.hero__art-overlay { top: 23%; left: -3%; width: 30%; }.hero__logos { gap: 30px; }.hero__logo-window { min-width: 0; }.hero__logo-track { gap: 30px; }.section-shell { padding-inline: 30px; }.setup { min-height: 554px; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px; padding-bottom: 120px; }.highlights__visual { min-height: 363px; } }
@@ -850,6 +852,13 @@ const teamMembers = [
     .highlights .section-heading { margin-bottom: 50px; }
     .highlight-list { margin-top: 10px; }
     .highlight-list article { transform: translateY(20px); }
+  }
+  @media (min-width: 810px) and (max-width: 959px) {
+    .product-grid { grid-template-rows: auto 434px; }
+    /* The task artwork is intentionally clipped by its card. Let the client
+       title determine the first row when it wraps at narrow tablet widths. */
+    .product-card--tasks { contain: size; }
+    .product-card--client .client-dashboard { margin-bottom: -22px; }
   }
   @media (min-width: 1200px) {
     .setup { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; padding-top: 0; padding-bottom: 150px; }

@@ -20,10 +20,12 @@ const {
   ariaLabel,
   ...attributes
 } = Astro.props;
-const classes = ["button", variant !== "dark" && `button--${variant}`, !showIcon && "button--no-icon", className]
+const classes = ["button", variant !== "dark" && `button--${variant}`, !showIcon && "button--no-icon", !href && type === "submit" && "button--submit", className]
   .filter(Boolean)
   .join(" ");
 const rightArrowPath = "M.938 6.574h12.486L8.462 1.612A.938.938 0 1 1 9.788.286L16.35 6.85a.937.937 0 0 1 0 1.325l-6.562 6.563a.938.938 0 0 1-1.326-1.326l4.962-4.962H.938a.937.937 0 1 1 0-1.875Z";
+const iconWidth = !href && type === "submit" ? 18 : 17;
+const iconHeight = !href && type === "submit" ? 16 : 15;
 ---
 
 {
@@ -32,8 +34,8 @@ const rightArrowPath = "M.938 6.574h12.486L8.462 1.612A.938.938 0 1 1 9.788.286L
       {showIcon && (
         <span class="button__icon-window" aria-hidden="true">
           <span class="button__icon-track">
-            <span class="button__icon-copy button__icon-copy--default">{icon === "→" ? <svg width="17" height="15" viewBox="0 0 17 15" aria-hidden="true"><path fill="currentColor" d={rightArrowPath} /></svg> : icon}</span>
-            <span class="button__icon-copy button__icon-copy--hover">{icon === "→" ? <svg width="17" height="15" viewBox="0 0 17 15" aria-hidden="true"><path fill="currentColor" d={rightArrowPath} /></svg> : icon}</span>
+            <span class="button__icon-copy button__icon-copy--default">{icon === "→" ? <svg width={iconWidth} height={iconHeight} viewBox="0 0 17 15" aria-hidden="true"><path fill="currentColor" d={rightArrowPath} /></svg> : icon}</span>
+            <span class="button__icon-copy button__icon-copy--hover">{icon === "→" ? <svg width={iconWidth} height={iconHeight} viewBox="0 0 17 15" aria-hidden="true"><path fill="currentColor" d={rightArrowPath} /></svg> : icon}</span>
           </span>
         </span>
       )}
@@ -49,8 +51,8 @@ const rightArrowPath = "M.938 6.574h12.486L8.462 1.612A.938.938 0 1 1 9.788.286L
       {showIcon && (
         <span class="button__icon-window" aria-hidden="true">
           <span class="button__icon-track">
-            <span class="button__icon-copy button__icon-copy--default">{icon === "→" ? <svg width="17" height="15" viewBox="0 0 17 15" aria-hidden="true"><path fill="currentColor" d={rightArrowPath} /></svg> : icon}</span>
-            <span class="button__icon-copy button__icon-copy--hover">{icon === "→" ? <svg width="17" height="15" viewBox="0 0 17 15" aria-hidden="true"><path fill="currentColor" d={rightArrowPath} /></svg> : icon}</span>
+            <span class="button__icon-copy button__icon-copy--default">{icon === "→" ? <svg width={iconWidth} height={iconHeight} viewBox="0 0 17 15" aria-hidden="true"><path fill="currentColor" d={rightArrowPath} /></svg> : icon}</span>
+            <span class="button__icon-copy button__icon-copy--hover">{icon === "→" ? <svg width={iconWidth} height={iconHeight} viewBox="0 0 17 15" aria-hidden="true"><path fill="currentColor" d={rightArrowPath} /></svg> : icon}</span>
           </span>
         </span>
       )}
