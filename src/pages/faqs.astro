@@ -49,27 +49,28 @@ const description =
 
 <BaseLayout title="Worklane – Workflow Automation SaaS Framer Template" {description}>
   <div class="faq-page">
-    <section class="faq-hero" aria-labelledby="faq-title">
+    <section class="faq-hero" aria-labelledby="faq-title" data-reveal>
       <div class="faq-hero__inner">
-        <div class="faq-hero__eyebrow" aria-label="FAQs">
+        <div class="faq-hero__eyebrow" aria-label="FAQs" data-reveal-child data-reveal-delay="100">
           <span class="faq-hero__dot"></span>
           <span>FAQs</span>
           <span class="faq-hero__dot"></span>
         </div>
-        <h1 id="faq-title">Answers to common questions</h1>
+        <h1 id="faq-title" data-reveal-child data-reveal-delay="200">Answers to common questions</h1>
       </div>
     </section>
 
     <section class="faq-content" aria-label="Frequently asked questions">
       <div class="faq-groups">
         {groups.map((group, groupIndex) => (
-          <section class={`faq-group faq-group--${groupIndex + 1}`}>
-            <h2>{group.title}</h2>
+          <section class={`faq-group faq-group--${groupIndex + 1}`} data-reveal={groupIndex === 0 ? true : undefined} data-reveal-each={groupIndex === 0 ? true : undefined}>
+            <h2 data-reveal-child={groupIndex === 0 ? true : undefined} data-reveal-delay={groupIndex === 0 ? "300" : undefined}>{group.title}</h2>
             <FaqAccordion
               class={`faq-route-list faq-route-group--${groupIndex + 1}`}
               items={group.items}
               firstOpen={groupIndex === 0}
-              single={true}
+              single={false}
+              revealDelayStart={groupIndex === 0 ? 350 : undefined}
             />
           </section>
         ))}

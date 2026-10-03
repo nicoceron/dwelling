@@ -10,7 +10,7 @@ const clientLogos = [
 
 <BaseLayout title="Worklane – Workflow Automation SaaS Framer Template" description="Launch an automation-focused SaaS website with Worklane. A modern Framer template designed for clarity, speed, and growth.">
   <div class="demo-page">
-    <section class="demo-hero" data-reveal>
+    <section class="demo-hero" data-reveal data-reveal-each>
       <div class="demo-hero__inner">
         <div class="demo-intro" data-reveal-child data-reveal-delay="100"><span class="eyebrow"><i class="eyebrow__dot" aria-hidden="true"></i><span>Live walkthrough</span><i class="eyebrow__dot" aria-hidden="true"></i></span><h1>Request a demo</h1><p>Get a live walkthrough of the platform and see how teams manage tasks, clients, and revenue in one place.</p></div>
         <form class="demo-form" action={requestDemoFormEndpoint || undefined} method="POST" data-local-form data-reveal-child data-reveal-delay="250">
@@ -24,7 +24,7 @@ const clientLogos = [
           </div>
           <Button type="submit" icon="→">Request demo</Button><p class="form-status" aria-live="polite"></p>
         </form>
-        <div class="trusted" data-reveal-child data-reveal-delay="600"><strong>Trusted by teams worldwide</strong><div class="trusted__viewport"><div class="trusted__logos">{[...clientLogos, ...clientLogos].map(([src, alt], index) => <img src={src} width="92" height="20" alt={index < clientLogos.length ? alt : ""} aria-hidden={index >= clientLogos.length ? "true" : undefined} />)}</div></div></div>
+        <div class="trusted" data-reveal-child><strong>Trusted by teams worldwide</strong><div class="trusted__viewport"><div class="trusted__logos">{[...clientLogos, ...clientLogos].map(([src, alt], index) => <img src={src} width="92" height="20" alt={index < clientLogos.length ? alt : ""} aria-hidden={index >= clientLogos.length ? "true" : undefined} />)}</div></div></div>
       </div>
     </section>
   </div>

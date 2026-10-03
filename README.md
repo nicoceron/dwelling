@@ -40,7 +40,11 @@ Then run the comparison in another terminal:
 E2E_BASE_URL=http://127.0.0.1:4352 npm run visual:compare
 ```
 
-Visual results and diffs are written under `.evidence/`. The 51 desktop/tablet/mobile full-page results remain in `visual-report.json`; the complete 72-page and 280-state matrix is in `visual-state-report.json`. After build, browser, and visual verification, reconcile the completion ledger with:
+Visual results and diffs are written under `.evidence/`. The 51 desktop/tablet/mobile full-page results remain in `visual-report.json`; the complete 72-page and 280-state matrix is in `visual-state-report.json`.
+
+The default full-page comparison uses a settled reduced-motion target for stable layout inspection; viewport states use the captured source preference (`no-preference`). To inspect initial entrance frames instead, pass `--full-page-motion=source` to `visual:compare`. The source's initial screenshot timing is not recorded, so either full-page mode can show moving-media and entrance-frame differences even when the interaction behavior matches; raw differences remain visible in the reports.
+
+After build, browser, and visual verification, reconcile the completion ledger with:
 
 ```bash
 npm run tracker:reconcile

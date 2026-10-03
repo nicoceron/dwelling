@@ -139,7 +139,7 @@ const faqItems = [
 ---
 
 <section id="ai-automation" class="conversion-section ai-section" data-reveal data-reveal-each>
-  <div class="ai-section__shell">
+  <div class="ai-section__shell" data-reveal-child>
     <img class="ai-section__background ai-section__background--side ai-section__background--side-left" src="/assets/framerusercontent.com/images/Z2UDtbk8bfIZAqJe8uLUYDVxFI.svg" alt="" aria-hidden="true" />
     <img class="ai-section__background ai-section__background--side ai-section__background--side-right" src="/assets/framerusercontent.com/images/Z2UDtbk8bfIZAqJe8uLUYDVxFI.svg" alt="" aria-hidden="true" />
     <img class="ai-section__background ai-section__background--grid" src="/assets/framerusercontent.com/images/IaNCr2d8JUTUZ2bOx135NYqB2wQ.svg" alt="" aria-hidden="true" />
@@ -335,7 +335,7 @@ const faqItems = [
         <Button href="/contact" variant="dark">Talk to us</Button>
       </div>
     </div>
-    <FaqAccordion items={faqItems} firstOpen={true} single={true} class="faq-route-list faq-preview-section__list" />
+    <FaqAccordion items={faqItems} firstOpen={true} single={false} class="faq-route-list faq-preview-section__list" />
   </div>
 </section>
 
@@ -1204,5 +1204,27 @@ const faqItems = [
     .use-case-section__dashboard { flex: 1 0 0; }
     .use-case-section__dashboard-small { flex: .8 0 0; }
     .use-case-section__activity { position: relative; inset: auto; width: 70%; height: auto; align-self: flex-end; }
+  }
+
+  /* The tablet pricing row is sized by its copy and feature wrapping. */
+  @media (min-width: 810px) and (max-width: 1199px) {
+    .pricing-section { height: auto; }
+    .pricing-section__inner { display: flow-root; }
+    .pricing-switcher { margin-top: 50px; }
+    .pricing-panels { margin-bottom: -20px; }
+    .plan-card,
+    .plan-card--popular,
+    .plan-card:not(.plan-card--popular) { height: auto; min-height: 0; padding: 20px; border: 0; }
+    .plan-card:not(.plan-card--popular) { margin: 20px 0; }
+    .plan-card__topline { height: 40px; min-height: 40px; flex: none; }
+    .plan-card__symbol { width: 40px; height: 40px; flex: none; }
+    .plan-card h3 { margin-top: 20px; }
+    .plan-card__summary { min-height: 0; margin-top: 2px; }
+    .plan-card__price { display: flex; height: 48px; align-items: baseline; margin: 20px 0 0; }
+    .plan-card__price strong { line-height: 48px; }
+    .plan-card :global(.button) { height: 43.4px; min-height: 43.4px; margin-top: 20px; }
+    .plan-card ul { margin: 20px 0 0; }
+    .plan-card--popular { position: relative; }
+    .plan-card--popular .plan-card__topline > span:last-child { position: absolute; top: 20px; right: 20px; padding: 4px 12px; border-radius: 6px; background: rgba(0,0,0,.5); color: #fff; font-size: 14px; line-height: 16.8px; }
   }
 </style>

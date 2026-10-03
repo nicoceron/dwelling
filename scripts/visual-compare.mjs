@@ -7,6 +7,10 @@ import { PNG } from "pngjs";
 const projectRoot = path.resolve(import.meta.dirname, "..");
 const baseUrl = process.env.E2E_BASE_URL ?? "http://127.0.0.1:4322";
 const strict = process.argv.includes("--strict");
+const fullPageMotion = process.argv.find((argument) => argument.startsWith("--full-page-motion="))?.slice("--full-page-motion=".length) ?? "settled";
+if (!new Set(["settled", "source"]).has(fullPageMotion)) {
+  throw new Error("--full-page-motion must be settled or source.");
+}
 const routeFilter = process.argv.find((argument) => argument.startsWith("--route="))?.slice("--route=".length);
 const viewportFilter = process.argv.find((argument) => argument.startsWith("--viewport="))?.slice("--viewport=".length);
 const selectionIsComplete = !routeFilter && !viewportFilter;
@@ -116,7 +120,7 @@ async function fullPageResult(browser, route, capture) {
   const diffPath = path.join(diffRoot, `${routeName(route)}--${name}.png`);
   let context;
   try {
-    const opened = await openCapture(browser, route, capture.viewport, "reduce", runtimeErrors);
+    const opened = await openCapture(browser, route, capture.viewport, fullPageMotion === "source" ? metadata.environment.reducedMotion : "reduce", runtimeErrors);
     ({ context } = opened);
     const { page } = opened;
     const developmentToolbarPresent = await page.locator("astro-dev-toolbar").count() > 0;
@@ -136,7 +140,7 @@ async function fullPageResult(browser, route, capture) {
       const rect = footer.getBoundingClientRect();
       return { y: Math.round(rect.top + window.scrollY), height: Math.round(rect.height) };
     }));
-    await page.screenshot({ path: actualPath, fullPage: true, animations: "disabled" });
+    await page.screenshot({ path: actualPath, fullPage: true, animations: fullPageMotion === "source" ? "allow" : "disabled" });
     const comparison = await compareScreenshots(oraclePath, actualPath, diffPath);
     return { route, viewport: name, ...comparison, runtimeErrors, headingGeometry, footerGeometry, developmentToolbarPresent };
   } catch (error) {
@@ -312,7 +316,7 @@ const coreResults = fullPageResults.filter((result) => coreViewports.has(result.
 const coreSummary = summary(coreResults);
 const coreReport = {
   generatedAt: new Date().toISOString(),
-  captureMode: "settled-reduced-motion",
+  captureMode: fullPageMotion === "source" ? `source-motion-preference-${metadata.environment.reducedMotion}` : "settled-reduced-motion",
   targetRatio,
   ...coreSummary,
   results: coreResults,
@@ -344,12 +348,13 @@ const complete = selectionIsComplete &&
 const stateReport = {
   generatedAt: new Date().toISOString(),
   captureModes: {
-    fullPage: "settled-reduced-motion",
+    fullPage: fullPageMotion === "source" ? `source-motion-preference-${metadata.environment.reducedMotion}` : "settled-reduced-motion",
     viewportStates: "source-motion-preference-sequential-scroll",
   },
   targetRatio,
   pixelmatch: { threshold: 0.12, includeAA: false, dimensionPadding: "white" },
   sourceStateLimitations: [
+    "Full-page screenshots use the source's recorded motion preference. The capsule does not record the exact elapsed time for its initial screenshot, so entrance and looping animation frames can differ even with matching motion behavior; those pixels still count as differences.",
     "The source manifest records scroll coordinates and final screenshots, but not exact animation or media frame timing. Viewport states are captured 700 ms after each scroll and with animations allowed; pixel differences remain failures.",
     "The homepage Follow-ups interaction screenshot is scrolled to the FAQ. The tab is activated and its DOM state is checked, but the clicked tab is outside the captured viewport, so its pixels cannot verify the interaction.",
     "Only four source interactions have screenshots. Hover and keyboard behavior needs separate functional verification; this image matrix does not claim it.",

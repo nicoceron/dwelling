@@ -25,7 +25,8 @@ const waitlistFormEndpoint = import.meta.env.PUBLIC_WAITLIST_FORM_ENDPOINT?.trim
   .waitlist-intro h1 { width:100%; font-size:62px; line-height:68.2px; text-wrap:balance; }
   .waitlist-intro p { width:600px; max-width:100%; margin-top:10px; color:#545454; font-family:"Inter Display",sans-serif; font-size:20px; font-weight:500; line-height:28px; text-wrap:balance; }
   .waitlist-form { position:relative; width:600px; height:78.8px; margin:50px auto 0; }
-  .waitlist-input { position:absolute; top:0; left:0; width:381.44px; height:52px; border:1px solid rgba(10,11,11,.1); border-radius:16px; background:#f8f9fa; }
+  .waitlist-input { position:absolute; top:0; left:0; width:381.44px; height:52px; border:0; border-radius:16px; background:#f8f9fa; }
+  .waitlist-input::after { position:absolute; inset:0; border:1px solid rgba(10,11,11,.1); border-radius:inherit; pointer-events:none; content:""; }
   .waitlist-input > input { position:absolute; top:10px; left:20px; width:341.44px; height:32px; padding:0; border:0; border-radius:16px; background:transparent; color:var(--ink); font-family:"Inter Display",sans-serif; font-size:16px; line-height:19.2px; outline:0; }
   .waitlist-input > input::placeholder { color:#545454; opacity:1; }
   :global(.waitlist-form > .button) { position:absolute; top:0; right:0; width:208.56px; height:52px; min-height:52px; padding:4px 18px 4px 4px; border:0; border-radius:16px; background:linear-gradient(180deg,#0a0b0b 0%,#363b3c 100%); color:#fff; font-family:"Inter Display",sans-serif; font-size:18px; line-height:23.4px; }

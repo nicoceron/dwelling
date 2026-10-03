@@ -8,10 +8,11 @@ interface Props {
   items: FaqItem[];
   firstOpen?: boolean;
   single?: boolean;
+  revealDelayStart?: number;
   class?: string;
 }
 
-const { items, firstOpen = true, single = true, class: className = "" } = Astro.props;
+const { items, firstOpen = true, single = false, revealDelayStart, class: className = "" } = Astro.props;
 const isRouteAccordion = className.split(/\s+/).includes("faq-route-list");
 
 const slugify = (value: string) =>
@@ -28,7 +29,13 @@ const slugify = (value: string) =>
     const panelId = `${id}-answer`;
 
     return (
-      <article class="faq-item" data-accordion-item data-accordion-index={index}>
+      <article
+        class="faq-item"
+        data-accordion-item
+        data-accordion-index={index}
+        data-reveal-child={revealDelayStart === undefined ? undefined : true}
+        data-reveal-delay={revealDelayStart === undefined ? undefined : String(revealDelayStart + index * 50)}
+      >
         <h3>
           <button
             id={id}

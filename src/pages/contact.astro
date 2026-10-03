@@ -21,24 +21,24 @@ const faqs = [
 <BaseLayout title="Worklane – Workflow Automation SaaS Framer Template" description="Launch an automation-focused SaaS website with Worklane. A modern Framer template designed for clarity, speed, and growth.">
   <div class="contact-page">
     <section class="contact-hero" data-reveal>
-      <div class="contact-hero__stage dark-stage">
+      <div class="contact-hero__stage dark-stage" data-reveal-child data-reveal-delay="100">
         <div class="contact-hero__background" aria-hidden="true">
           <video autoplay loop muted playsinline preload="auto" poster="/assets/framerusercontent.com/images/c1blVMHg8J0d8AnJtROLkvG9twQ.png"><source src="/assets/framerusercontent.com/assets/W3DDaVw09q9iUrlq729foZMn9o.mp4" type="video/mp4" /></video>
           <div></div>
         </div>
         <div class="contact-hero__content">
-          <div class="contact-hero__copy" data-reveal-child data-reveal-delay="100">
+          <div class="contact-hero__copy">
             <div class="contact-hero__intro">
-              <span class="eyebrow"><i class="eyebrow__dot" aria-hidden="true"></i><span>Contact us</span><i class="eyebrow__dot" aria-hidden="true"></i></span>
-              <h1>Let’s discuss<br class="contact-main-break" /> how we<br class="tablet-break" /> can help</h1>
-              <p>Whether you’re exploring the product, need help, or want to discuss a setup, we’re here to help you move forward.</p>
+              <span class="eyebrow" data-reveal-child data-reveal-delay="200"><i class="eyebrow__dot" aria-hidden="true"></i><span>Contact us</span><i class="eyebrow__dot" aria-hidden="true"></i></span>
+              <h1 data-reveal-child data-reveal-delay="300">Let’s discuss<br class="contact-main-break" /> how we<br class="tablet-break" /> can help</h1>
+              <p data-reveal-child data-reveal-delay="400">Whether you’re exploring the product, need help, or want to discuss a setup, we’re here to help you move forward.</p>
             </div>
-            <figure class="testimonial">
+            <figure class="testimonial" data-reveal-child data-reveal-delay="500">
               <blockquote>“The team took time to understand our setup before suggesting anything. That made all the difference.”</blockquote>
               <figcaption><img src="/assets/framerusercontent.com/images/hYfCvJ3IVdEznEOwIQiiAxWOsPY.jpg" width="150" height="150" alt="Sarah Collins" /><span><strong>Sarah Collins</strong><small>Operations Lead, Brightway</small></span></figcaption>
             </figure>
           </div>
-          <form class="contact-form" action={contactFormEndpoint || undefined} method="POST" data-local-form data-reveal-child data-reveal-delay="350">
+          <form class="contact-form" action={contactFormEndpoint || undefined} method="POST" data-local-form data-reveal-child data-reveal-delay="600">
             <div class="contact-form__fields">
               <label class="field"><span>Name*</span><div class="input-shell"><input type="text" name="Name" placeholder="Your full name" required /></div></label>
               <label class="field"><span>Company name</span><div class="input-shell"><input type="text" name="Company" placeholder="Your company name" /></div></label>
@@ -60,7 +60,7 @@ const faqs = [
     </section>
     <section class="faq-section" data-reveal>
       <div class="faq-heading"><span class="eyebrow"><i class="eyebrow__dot" aria-hidden="true"></i><span>FAQs</span><i class="eyebrow__dot" aria-hidden="true"></i></span><h2>Answers to common questions</h2></div>
-      <div class="faq-list contact-faq" data-accordion data-single="true">
+      <div class="faq-list contact-faq" data-accordion data-single="false">
         {faqs.map((item, index) => {
           const panelId = `faq-panel-${index}`;
           return <article class="faq-item" data-accordion-item><h3><button type="button" aria-expanded={index === 0} aria-controls={panelId} data-accordion-button><span>{item.question}</span><span class="faq-item__icon" aria-hidden="true">+</span></button></h3><div class="faq-item__panel" id={panelId} data-accordion-panel hidden={index !== 0}><p>{item.answer}</p></div></article>;
