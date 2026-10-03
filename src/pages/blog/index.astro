@@ -1,0 +1,184 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import BlogCard from "../../components/BlogCard.astro";
+import { blogPosts } from "../../data/blog";
+---
+
+<BaseLayout
+  title="Worklane – Workflow Automation SaaS Framer Template"
+  description="Launch an automation-focused SaaS website with Worklane. A modern Framer template designed for clarity, speed, and growth."
+>
+  <section class="blog-index" aria-labelledby="blog-title">
+    <div class="blog-index__heading" data-hero-reveal data-delay="100">
+      <h1 id="blog-title">Our blogs</h1>
+    </div>
+
+    <div class="blog-index__content" data-load-more-root>
+      <div class="blog-grid">
+        {blogPosts.map((post, index) => (
+          <BlogCard
+            post={post}
+            featured={post.featured}
+            eager={index < 3}
+            hidden={index >= 6}
+            revealDelay={index < 6 ? 200 + index * 100 : undefined}
+          />
+        ))}
+      </div>
+      <button class="load-more" type="button" data-load-more>
+        <span class="load-more__track"><span>Load More</span><span aria-hidden="true">Load More</span></span>
+      </button>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .blog-index {
+    padding-top: 0;
+    padding-bottom: 149.594px;
+  }
+
+  .blog-index__heading {
+    display: flex;
+    min-height: 338.203px;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 120px 0 150px;
+    text-align: center;
+  }
+
+  .blog-index__heading h1 {
+    width: min(700px, 100%);
+    font-size: 62px;
+    font-weight: 500;
+    line-height: 68.2px;
+    letter-spacing: normal;
+  }
+
+  .blog-index__content {
+    width: min(calc(100% - 60px), 1180px);
+    margin-inline: auto;
+  }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 50px 30px;
+  }
+
+  .load-more {
+    display: block;
+    width: 127.734px;
+    min-height: 51px;
+    margin: 110px auto 0;
+    padding: 14px 20px;
+    border: 0;
+    border-radius: 10px;
+    background: linear-gradient(#373a3b, #181a1a);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.17), 0 2px 4px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    cursor: pointer;
+    font-family: "Inter Display", sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 23.4px;
+    overflow: hidden;
+    transition: opacity 350ms cubic-bezier(.44,0,.56,1);
+  }
+
+  .load-more:focus-visible {
+    outline: 1px auto Highlight;
+    outline-offset: 1px;
+  }
+
+  .load-more__track { position: relative; display: block; height: 23.4px; transition: transform 350ms cubic-bezier(.44,0,.56,1); }
+  .load-more__track > span { display: block; height: 23.4px; }
+  .load-more__track > span:last-child { position: absolute; top: 35px; left: 0; width: 100%; }
+  .load-more:hover .load-more__track,
+  .load-more:focus-visible .load-more__track {
+    transform: translateY(-35px);
+  }
+
+  .load-more[data-load-complete="true"] {
+    width: 251.684px;
+    min-height: 43.4px;
+    padding: 10px 20px;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    color: #5d5d5d;
+    cursor: default;
+  }
+
+  .load-more[data-load-complete="true"] .load-more__track,
+  .load-more[data-load-complete="true"]:hover .load-more__track,
+  .load-more[data-load-complete="true"]:focus-visible .load-more__track {
+    transform: none;
+  }
+
+  .load-more[data-load-complete="true"] .load-more__track > span:last-child {
+    display: none;
+  }
+
+  @media (max-width: 1199px) {
+    .blog-index {
+      padding-top: 0;
+      padding-bottom: 120px;
+    }
+
+    .blog-index__heading {
+      min-height: 275px;
+      padding: 140px 0 80px;
+    }
+
+    .blog-index__heading h1 {
+      font-size: 50px;
+      line-height: 55px;
+    }
+
+    .blog-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 50px 30px;
+    }
+
+    .load-more {
+      min-height: 43.406px;
+      margin-top: 50px;
+      padding: 10px 20px;
+    }
+
+  }
+
+  @media (max-width: 809px) {
+    .blog-index {
+      padding-top: 0;
+      padding-bottom: 100px;
+    }
+
+    .blog-index__heading {
+      min-height: 206px;
+      padding: 102px 0 60px;
+    }
+
+    .blog-index__heading h1 {
+      font-size: 40px;
+      line-height: 44px;
+    }
+
+    .blog-index__content {
+      width: calc(100% - 40px);
+    }
+
+    .blog-grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .load-more {
+      min-height: 43.406px;
+      margin-top: 30px;
+      padding: 10px 20px;
+    }
+
+  }
+</style>

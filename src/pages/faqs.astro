@@ -1,0 +1,353 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import FaqAccordion from "../components/FaqAccordion.astro";
+
+const groups = [
+  {
+    title: "General",
+    items: [
+      {
+        question: "What is Worklane?",
+        answer:
+          "Worklane is a smart workflow management platform that helps teams automate processes, organize tasks, and collaborate efficiently from one unified workspace.",
+      },
+      { question: "Who is Worklane designed for?", answer: "Worklane is built for startups, agencies, product teams, operations teams, and growing businesses that want to simplify work and move faster." },
+      { question: "Do I need technical skills to use Worklane?", answer: "No. Worklane is designed to be intuitive and visual, so anyone can build workflows without coding." },
+      { question: "What makes Worklane different from other tools?", answer: "Worklane combines smart automation, AI-powered suggestions, and real-time collaboration in one platform reducing tool overload and manual effort." },
+    ],
+  },
+  {
+    title: "Features & automation",
+    items: [
+      { question: "How does automation work in Worklane?", answer: "Worklane lets you create workflows using triggers, conditions, and actions that automate repetitive tasks and keep work moving automatically." },
+      { question: "How does AI help in Worklane?", answer: "AI suggests workflow steps, optimizes task order, and recommends improvements based on how your team works over time." },
+      { question: "Can I customize workflows?", answer: "Yes. You can fully customize workflows with flexible rules, conditions, and branching logic to match real-world processes." },
+      { question: "Can I share workflows with my team?", answer: "Absolutely. Workflows can be shared, duplicated, and managed collaboratively across teams." },
+    ],
+  },
+  {
+    title: "Collaboration",
+    items: [
+      { question: "Can my team collaborate in real time?", answer: "Yes. Team members can comment, assign tasks, track progress, and work together on shared workflows in real time." },
+      { question: "Is Worklane suitable for remote teams?", answer: "Yes. Worklane is designed for distributed and remote teams, providing clear visibility and seamless collaboration." },
+    ],
+  },
+  {
+    title: "Support",
+    items: [
+      { question: "How can I contact support?", answer: "Support options will be available at launch, including in-app help and documentation." },
+      { question: "Will onboarding support be provided?", answer: "Yes. Early access users will receive guided onboarding and setup assistance." },
+      { question: "Is there a help center or documentation?", answer: "Yes. Worklane will include a dedicated help center with step-by-step guides, best practices, and workflow examples to help you get started quickly." },
+      { question: "How are bug reports and feature requests handled?", answer: "You’ll be able to report issues and submit feature requests directly from your dashboard. Our team actively reviews feedback to improve Worklane with every release." },
+    ],
+  },
+];
+
+const description =
+  "Launch an automation-focused SaaS website with Worklane. A modern Framer template designed for clarity, speed, and growth.";
+---
+
+<BaseLayout title="Worklane – Workflow Automation SaaS Framer Template" {description}>
+  <div class="faq-page">
+    <section class="faq-hero" aria-labelledby="faq-title">
+      <div class="faq-hero__inner">
+        <div class="faq-hero__eyebrow" aria-label="FAQs">
+          <span class="faq-hero__dot"></span>
+          <span>FAQs</span>
+          <span class="faq-hero__dot"></span>
+        </div>
+        <h1 id="faq-title">Answers to common questions</h1>
+      </div>
+    </section>
+
+    <section class="faq-content" aria-label="Frequently asked questions">
+      <div class="faq-groups">
+        {groups.map((group, groupIndex) => (
+          <section class={`faq-group faq-group--${groupIndex + 1}`}>
+            <h2>{group.title}</h2>
+            <FaqAccordion
+              class={`faq-route-list faq-route-group--${groupIndex + 1}`}
+              items={group.items}
+              firstOpen={groupIndex === 0}
+              single={true}
+            />
+          </section>
+        ))}
+
+        <div class="faq-cta">
+          <div class="faq-cta__top">
+            <h3>Still have questions?</h3>
+            <p>Join the Worklane waitlist and get early access to smarter workflow automation.</p>
+          </div>
+          <a class="faq-cta__button" href="/waitlist">
+            <span class="faq-cta__icon" aria-hidden="true">
+              <img
+                src="/assets/framerusercontent.com/images/62ZeXg28hbWJRFzyMfxnqWR6w.svg"
+                width="17"
+                height="15"
+                alt=""
+              />
+            </span>
+            <span class="faq-cta__label">Join the waitlist</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .faq-page {
+    background: var(--paper);
+  }
+
+  .faq-hero {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    padding: 120px 0 150px;
+  }
+
+  .faq-hero__inner {
+    display: grid;
+    width: min(100%, 760px);
+    justify-items: center;
+    align-content: center;
+    gap: 10px;
+    padding: 0 30px;
+    text-align: center;
+  }
+
+  .faq-hero__eyebrow {
+    display: flex;
+    height: 32.8px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 8px 20px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Inter Display", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    line-height: 1.2;
+  }
+
+  .faq-hero__dot {
+    width: 4px;
+    height: 4px;
+    flex: none;
+    border-radius: 50%;
+    background: var(--ink);
+  }
+
+  .faq-hero h1 {
+    width: 100%;
+    color: var(--ink);
+    font-family: "Stack Sans Headline", sans-serif;
+    font-size: 62px;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 1.1;
+    text-align: center;
+    text-wrap: balance;
+  }
+
+  .faq-content {
+    padding-bottom: 150px;
+  }
+
+  .faq-groups {
+    display: flex;
+    width: min(100%, 760px);
+    flex-direction: column;
+    gap: 70px;
+    margin-inline: auto;
+    padding: 0 30px;
+  }
+
+  .faq-group {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .faq-group h2 {
+    width: 100%;
+    color: var(--ink);
+    font-family: "Stack Sans Headline", sans-serif;
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .faq-cta {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 30px;
+    border-radius: 20px;
+    background: var(--wash);
+    text-align: center;
+  }
+
+  .faq-cta__top {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .faq-cta h3 {
+    width: 100%;
+    color: var(--ink);
+    font-family: "Stack Sans Headline", sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .faq-cta p {
+    width: min(100%, 500px);
+    color: #545454;
+    font-family: "Inter Display", sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    text-wrap: balance;
+  }
+
+  .faq-cta__button {
+    display: flex;
+    width: 208.56px;
+    height: 52px;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 4px 18px 4px 4px;
+    overflow: clip;
+    border: 1px solid var(--ink);
+    border-radius: 16px;
+    background: linear-gradient(180deg, var(--ink), #363b3c);
+    color: var(--paper);
+    font-family: "Stack Sans Headline", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.2;
+    transition: filter 350ms ease, transform 350ms ease;
+  }
+
+  .faq-cta__button:hover,
+  .faq-cta__button:focus-visible {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+  }
+
+  .faq-cta__icon {
+    display: grid;
+    width: 44px;
+    height: 44px;
+    flex: none;
+    place-items: center;
+    border-radius: 12px;
+    background: linear-gradient(#fff, #c9c9c9);
+  }
+
+  .faq-cta__icon img {
+    width: 17px;
+    height: 15px;
+  }
+
+  .faq-cta__label {
+    white-space: nowrap;
+  }
+
+  @media (max-width: 1199px) and (min-width: 810px) {
+    .faq-hero {
+      padding: 140px 0 80px;
+    }
+
+    .faq-hero h1 {
+      font-size: 50px;
+    }
+
+    .faq-content {
+      padding-bottom: 120px;
+    }
+
+    .faq-group h2 {
+      font-size: 26px;
+    }
+
+    .faq-cta__button {
+      width: 192.56px;
+      height: 44px;
+      gap: 10px;
+      padding-right: 14px;
+    }
+
+    .faq-cta__icon {
+      width: 36px;
+      height: 36px;
+    }
+  }
+
+  @media (max-width: 809px) {
+    .faq-hero {
+      padding: 102px 0 60px;
+    }
+
+    .faq-hero__inner,
+    .faq-groups {
+      width: 100%;
+      padding-right: 20px;
+      padding-left: 20px;
+    }
+
+    .faq-hero h1 {
+      font-size: 40px;
+    }
+
+    .faq-content {
+      padding-bottom: 100px;
+    }
+
+    .faq-group h2 {
+      font-size: 24px;
+    }
+
+    .faq-cta {
+      padding: 20px;
+    }
+
+    .faq-cta h3 {
+      font-size: 20px;
+    }
+
+    .faq-cta p {
+      width: 100%;
+    }
+
+    .faq-cta__button {
+      width: 192.56px;
+      height: 44px;
+      gap: 10px;
+      padding-right: 14px;
+    }
+
+    .faq-cta__icon {
+      width: 36px;
+      height: 36px;
+    }
+
+  }
+</style>

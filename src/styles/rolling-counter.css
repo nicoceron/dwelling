@@ -1,0 +1,34 @@
+.rolling-counter__digits {
+  display: inline-flex;
+  vertical-align: bottom;
+}
+
+.rolling-counter__window {
+  display: block;
+  height: .8em;
+  overflow: hidden;
+}
+
+.rolling-counter__stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rolling-counter__stack > span {
+  display: flex;
+  height: .8em;
+  flex: 0 0 .8em;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+}
+
+.rolling-counter__label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}

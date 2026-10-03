@@ -1,0 +1,56 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Button from "../components/Button.astro";
+const waitlistFormEndpoint = import.meta.env.PUBLIC_WAITLIST_FORM_ENDPOINT?.trim();
+---
+
+<BaseLayout title="Worklane – Workflow Automation SaaS Framer Template" description="Launch an automation-focused SaaS website with Worklane. A modern Framer template designed for clarity, speed, and growth.">
+  <div class="waitlist-page">
+    <section class="waitlist-hero" data-reveal>
+      <div class="waitlist-hero__inner">
+        <div class="waitlist-intro" data-reveal-child data-reveal-delay="100"><h1>Join the AI workflow automation waitlist</h1><p>Be among the first to experience a smarter way to automate workflows, manage operations with AI-powered tools.</p></div>
+        <form class="waitlist-form" action={waitlistFormEndpoint || undefined} method="POST" data-local-form data-reveal-child data-reveal-delay="350">
+          <div class="waitlist-input"><label class="sr-only" for="waitlist-email">Email address</label><input id="waitlist-email" type="email" name="Email address" placeholder="Enter your email" required /></div>
+          <Button type="submit" icon="→">Join the waitlist</Button><p class="waitlist-note">Early access. No spam</p><p class="form-status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .waitlist-hero { min-height:601.2px; padding:120px 20px 0; }
+  .waitlist-hero__inner { width:700px; max-width:100%; margin:0 auto; }
+  .waitlist-intro { display:grid; justify-items:center; text-align:center; }
+  .waitlist-intro h1 { width:100%; font-size:62px; line-height:68.2px; text-wrap:balance; }
+  .waitlist-intro p { width:600px; max-width:100%; margin-top:10px; color:#545454; font-family:"Inter Display",sans-serif; font-size:20px; font-weight:500; line-height:28px; text-wrap:balance; }
+  .waitlist-form { position:relative; width:600px; height:78.8px; margin:50px auto 0; }
+  .waitlist-input { position:absolute; top:0; left:0; width:381.44px; height:52px; border:1px solid rgba(10,11,11,.1); border-radius:16px; background:#f8f9fa; }
+  .waitlist-input > input { position:absolute; top:10px; left:20px; width:341.44px; height:32px; padding:0; border:0; border-radius:16px; background:transparent; color:var(--ink); font-family:"Inter Display",sans-serif; font-size:16px; line-height:19.2px; outline:0; }
+  .waitlist-input > input::placeholder { color:#545454; opacity:1; }
+  :global(.waitlist-form > .button) { position:absolute; top:0; right:0; width:208.56px; height:52px; min-height:52px; padding:4px 18px 4px 4px; border:0; border-radius:16px; background:linear-gradient(180deg,#0a0b0b 0%,#363b3c 100%); color:#fff; font-family:"Inter Display",sans-serif; font-size:18px; line-height:23.4px; }
+  :global(.waitlist-form > .button .button__icon-window) { width:44px; height:44px; flex-basis:44px; border-radius:12px; background:linear-gradient(180deg,#fff 0%,#c9c9c9 100%); color:var(--ink); }
+  .waitlist-note { position:absolute; top:62px; left:0; width:600px; margin:0; color:#545454; font-family:"Inter Display",sans-serif; font-size:14px; font-weight:500; line-height:16.8px; letter-spacing:.3px; text-align:center; text-wrap:balance; }
+  .waitlist-form .form-status { position:absolute; top:90px; left:0; width:100%; margin:0; color:#9b1c1c; font-size:14px; line-height:1.4; text-align:center; }
+  .waitlist-form .form-status:empty { display:none; }
+  .waitlist-form .form-status[data-submit-state="success"] { color:#276b20; }
+  .waitlist-form .form-status[data-submit-state="pending"] { color:#545454; }
+  @media (max-width:1199px) {
+    .waitlist-hero { min-height:504.8px; padding-top:140px; }
+    .waitlist-intro h1 { font-size:50px; line-height:55px; }
+    .waitlist-form { margin-top:30px; }
+  }
+  @media (max-width:809px) {
+    .waitlist-hero { min-height:0; padding:102px 20px 60px; }
+    .waitlist-hero__inner { width:min(100%,720px); }
+    .waitlist-intro h1 { font-size:40px; line-height:44px; }
+    .waitlist-intro p { width:min(100%,600px); margin-top:10px; font-size:18px; line-height:25.2px; }
+    .waitlist-form { width:min(100%,600px); height:140.8px; margin-top:30px; }
+    .waitlist-input { width:100%; }
+    .waitlist-input > input { left:20px; width:calc(100% - 40px); }
+    :global(.waitlist-form > .button) { top:62px; right:auto; left:50%; transform:translateX(-50%); }
+    .waitlist-note { top:124px; width:100%; text-align:center; }
+    .waitlist-form .form-status { top:150px; }
+  }
+  .sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; }
+</style>

@@ -1,0 +1,65 @@
+<a
+  class="template-badge"
+  href="https://framer.link/worklane"
+  target="_blank"
+  rel="noreferrer"
+  aria-label="Get the Worklane template"
+>
+  <span class="template-badge__label"><span>Get it for FREE</span><span aria-hidden="true">Get it for FREE</span></span>
+  <img
+    class="template-badge__icon"
+    src="/assets/framerusercontent.com/images/JCDk8i61Ec1N2laCFRxqdUPv0sM.svg"
+    alt=""
+    width="14"
+    height="14"
+    aria-hidden="true"
+  />
+</a>
+
+<style>
+  @font-face {
+    font-family: "Geist";
+    src: url("/assets/fonts.gstatic.com/s/geist/v4/gyBhhwUxId8gMGYQMKR3pzfaWI_Re-Q4mJPby1QNtA.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 700;
+  }
+
+  .template-badge {
+    position: fixed;
+    z-index: 45;
+    right: 21px;
+    bottom: 70px;
+    display: flex;
+    width: 140px;
+    height: 38px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 6px 9px;
+    border: 0;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(5, 8, 12, 0.1);
+    color: #05080c;
+    font-family: "Geist", "Geist Placeholder", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: -0.24px;
+    line-height: 14.4px;
+  }
+
+  .template-badge__label { display: block; height: 14.4px; overflow: hidden; white-space: nowrap; }
+  .template-badge__label > span { display: block; transition: transform 450ms cubic-bezier(.44, 0, .56, 1), scale 450ms cubic-bezier(.44, 0, .56, 1); }
+  .template-badge__label > span:first-child { scale: 1; }
+  .template-badge__icon { width: 14px; height: 14px; flex: none; object-fit: contain; }
+
+  .template-badge:hover .template-badge__label > span { transform: translateY(-14.4px); }
+  .template-badge:hover .template-badge__label > span:first-child { scale: 1; }
+
+  @media (max-width: 809px) {
+    .template-badge {
+      right: 21px;
+      bottom: 70px;
+    }
+  }
+</style>

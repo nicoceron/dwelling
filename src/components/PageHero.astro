@@ -1,0 +1,27 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  align?: "center" | "left";
+}
+
+const { eyebrow, title, description, align = "center" } = Astro.props;
+---
+
+<section class:list={["page-hero", `page-hero--${align}`]} data-reveal>
+  <div class="container page-hero__inner">
+    {eyebrow && <span class="eyebrow">{eyebrow}</span>}
+    <h1 class="display-lg">{title}</h1>
+    {description && <p class="copy-lg">{description}</p>}
+    <slot />
+  </div>
+</section>
+
+<style>
+  .page-hero--left .page-hero__inner {
+    justify-items: start;
+    margin-inline: 0 auto;
+    text-align: left;
+  }
+</style>

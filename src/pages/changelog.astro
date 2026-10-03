@@ -1,0 +1,345 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const releases = [
+  {
+    date: "10, January 2026",
+    version: "Version 2.1",
+    image: "/assets/framerusercontent.com/images/2MbW1hsDgY4NH6KzX4a5Sy8sg.png",
+    groups: [
+      {
+        title: "New",
+        items: [
+          { lead: "AI Workflow Builder", tail: " — Automatically generates complete workflows based on your goals and tools." },
+          { lead: "Dark Mode Interface", tail: " for improved focus and late-night productivity." },
+          { lead: "Shared Workflows", tail: " — Create, share, and reuse workflows across teams or departments." },
+        ],
+      },
+      {
+        title: "Improved",
+        items: [
+          { lead: "Dashboard and workflow views", tail: " now load up to 2× faster." },
+          { lead: "Smoother real-time syncing", tail: " between tasks, automations, and integrations." },
+          { lead: "Improved accuracy", tail: " in AI-driven workflow suggestions and triggers." },
+        ],
+      },
+      {
+        title: "Fixed",
+        items: [
+          { lead: "Resolved minor issues", tail: " with workflow export and duplication." },
+          { lead: "Fixed delays", tail: " in automation triggers under high activity." },
+        ],
+      },
+    ],
+  },
+  {
+    date: "27, March 2025",
+    version: "Version 1.1",
+    image: "/assets/framerusercontent.com/images/c1blVMHg8J0d8AnJtROLkvG9twQ.png",
+    groups: [
+      {
+        title: "New",
+        items: [
+          { lead: "AI Automation Suggestions", tail: " — Recommends smarter steps and conditions based on usage patterns." },
+          { lead: "Custom Workflow Rules", tail: " — Add flexible conditions, exceptions, and branching logic." },
+        ],
+      },
+      {
+        title: "Improved",
+        items: [
+          { lead: "Streamlined onboarding", tail: " with a clearer step-by-step workflow setup." },
+          { lead: "Faster syncing", tail: " across connected apps and team workspaces." },
+          { lead: "More reliable AI decision logic", tail: " for complex workflows." },
+        ],
+      },
+      {
+        title: "Fixed",
+        items: [
+          { lead: "Fixed occasional delays", tail: " when loading large workflows." },
+          { lead: "Resolved an issue", tail: " causing duplicate task creation in repeated automations." },
+        ],
+      },
+    ],
+  },
+];
+---
+
+<BaseLayout title="Worklane – Workflow Automation SaaS Framer Template" description="Launch an automation-focused SaaS website with Worklane. A modern Framer template designed for clarity, speed, and growth.">
+  <div id="hero" class="changelog-page route-page">
+    <section class="changelog-hero" data-reveal>
+      <div class="changelog-container">
+        <div class="changelog-hero__top">
+          <h1 data-reveal-child data-reveal-delay="100">Changelog</h1>
+          <p data-reveal-child data-reveal-delay="200">Explore the latest features, performance updates, and AI enhancements.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="changelog-list">
+      <div class="changelog-container changelog-list__container">
+        {
+          releases.map((release) => (
+            <article class="release" data-reveal>
+              <header class="release__header">
+                <div class="release__date" data-reveal-child data-reveal-delay="350">
+                  <span class="release__dot" aria-hidden="true"></span>
+                  <span>{release.date}</span>
+                  <span class="release__dot" aria-hidden="true"></span>
+                </div>
+                <h2 data-reveal-child data-reveal-delay="450">{release.version}</h2>
+              </header>
+              <div class="release__body">
+                <img
+                  src={release.image}
+                  width="700"
+                  height="394"
+                  alt="BG"
+                  data-reveal-child
+                  data-reveal-delay="500"
+                />
+                <div class="release__groups" data-reveal-child data-reveal-delay="600">
+                  {
+                    release.groups.map((group) => (
+                      <section class="release__group">
+                        <h3>{group.title}</h3>
+                        <div class="release__items">
+                          {group.items.map((item) => (
+                            <p class="release__item">
+                              <span aria-hidden="true">•  </span>{group.title === "New" ? <strong>{item.lead}</strong> : item.lead}{item.tail}
+                            </p>
+                          ))}
+                        </div>
+                      </section>
+                    ))
+                  }
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .changelog-page {
+    background: var(--paper);
+  }
+
+  .changelog-page h1,
+  .changelog-page h2,
+  .changelog-page h3 {
+    letter-spacing: normal;
+    font-feature-settings: "blwf", "cv03", "cv04", "cv09", "cv11";
+  }
+
+  .changelog-page h1,
+  .changelog-page .changelog-hero p {
+    text-wrap: balance;
+  }
+
+  .changelog-page p {
+    color: #545454;
+    font-feature-settings: "blwf", "cv03", "cv04", "cv09", "cv11";
+  }
+
+  .changelog-hero {
+    padding: 120px 0 150px;
+  }
+
+  .changelog-container {
+    width: 100%;
+    max-width: 760px;
+    margin-inline: auto;
+    padding-inline: 30px;
+  }
+
+  .changelog-hero__top {
+    width: 100%;
+    max-width: 700px;
+  }
+
+  .changelog-hero h1 {
+    font-size: 62px;
+    line-height: 1.1;
+  }
+
+  .changelog-hero p {
+    margin-top: 10px;
+    color: #545454;
+    font-size: 20px;
+    line-height: 1.4;
+  }
+
+  .changelog-list {
+    padding-bottom: 150px;
+  }
+
+  .changelog-list__container {
+    display: flex;
+    flex-direction: column;
+    gap: 70px;
+  }
+
+  .release {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 30px;
+  }
+
+  .release__header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 22px;
+    position: relative;
+  }
+
+  .release__header::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .release__date {
+    display: inline-flex;
+    width: max-content;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 20px;
+    border-radius: 10px;
+    position: relative;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.2;
+    letter-spacing: 0.3px;
+  }
+
+  .release__date::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--line);
+    border-radius: inherit;
+    pointer-events: none;
+  }
+
+  .release__dot {
+    width: 4px;
+    height: 4px;
+    flex: 0 0 4px;
+    border-radius: 50%;
+    background: var(--ink);
+  }
+
+  .release h2 {
+    font-size: 28px;
+    line-height: 1.2;
+  }
+
+  .release__body {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .release__body > img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border-radius: 20px;
+    object-fit: cover;
+  }
+
+  .release__groups {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .release__group {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .release__group h3 {
+    font-size: 28px;
+    line-height: 1.2;
+  }
+
+  .release__items {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .release__item {
+    color: #5d5d5d;
+    font-size: 18px;
+    line-height: 1.4;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .release__item strong {
+    color: inherit;
+    font-weight: 700;
+  }
+
+  @media (min-width: 810px) and (max-width: 1199px) {
+    .changelog-hero {
+      padding: 140px 0 80px;
+    }
+
+    .changelog-hero h1 {
+      font-size: 50px;
+      line-height: 1.1;
+    }
+
+    .changelog-list {
+      padding-bottom: 120px;
+    }
+
+    .release h2,
+    .release__group h3 {
+      font-size: 26px;
+    }
+  }
+
+  @media (max-width: 809px) {
+    .changelog-container {
+      padding-inline: 20px;
+    }
+
+    .changelog-hero {
+      padding: 102px 0 60px;
+    }
+
+    .changelog-hero h1 {
+      font-size: 40px;
+      line-height: 1.1;
+    }
+
+    .changelog-hero p {
+      font-size: 18px;
+      line-height: 1.4;
+    }
+
+    .changelog-list {
+      padding-bottom: 100px;
+    }
+
+    .release h2,
+    .release__group h3 {
+      font-size: 24px;
+    }
+  }
+</style>

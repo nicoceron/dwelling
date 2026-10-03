@@ -1,0 +1,604 @@
+---
+const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
+const links = [
+  ["Home", "/"],
+  ["About", "/about"],
+  ["Waitlist", "/waitlist"],
+  ["Changelog", "/changelog"],
+  ["Contact", "/contact"],
+];
+
+const isCurrent = (href: string) => pathname === href;
+---
+
+<header class="site-header" data-site-header data-menu-open="false">
+  <div class="site-header__surface">
+    <div class="site-header__inner container">
+      <div class="site-header__brand-slot">
+        <a class="brand" href="/" aria-label="Worklane home" data-menu-close>
+          <img
+            src="/assets/framerusercontent.com/images/qfGGTqnVjNBVYJTkSLfOfx7gzw.svg"
+            width="168"
+            height="30"
+            alt="Worklane"
+          />
+        </a>
+      </div>
+
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        {
+          links.map(([label, href]) => (
+            <a class="nav-pill" href={href} aria-current={isCurrent(href) ? "page" : undefined}>
+              {label}
+            </a>
+          ))
+        }
+      </nav>
+
+      <div class="site-header__actions">
+        <a class="header-cta" href="/request-demo" data-menu-close>
+          <span class="header-cta__track">
+            <span>Request a demo</span>
+            <span aria-hidden="true">Request a demo</span>
+          </span>
+        </a>
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-label="Open navigation"
+          aria-expanded="false"
+          aria-controls="mobile-navigation"
+          data-menu-toggle
+        >
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-overlay" data-nav-overlay aria-hidden="true">
+    <button class="nav-scrim" type="button" tabindex="-1" aria-label="Close navigation" data-menu-scrim></button>
+    <nav class="mobile-nav" id="mobile-navigation" aria-label="Mobile navigation" data-mobile-nav inert>
+      {
+        links.map(([label, href]) => (
+          <a class="nav-pill" href={href} aria-current={isCurrent(href) ? "page" : undefined}>
+            {label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: relative;
+    z-index: 100;
+    display: block !important;
+    width: 100%;
+    height: 99.203px;
+    background: transparent;
+  }
+
+  .site-header__surface {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    width: 100%;
+    height: 99.203px;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 0;
+    background: transparent;
+  }
+
+  .site-header__inner.container {
+    display: flex;
+    width: 100% !important;
+    max-width: 1240px !important;
+    min-height: 39.203px !important;
+    align-items: center;
+    gap: 30px;
+    padding: 0 30px !important;
+  }
+
+  .site-header__brand-slot,
+  .site-header__actions {
+    display: flex;
+    width: 1px;
+    max-width: 250px;
+    flex: 1 0 0;
+    align-items: center;
+  }
+
+  .site-header__brand-slot {
+    justify-content: flex-start;
+  }
+
+  .site-header__actions {
+    justify-content: flex-end;
+    gap: 20px;
+  }
+
+  .brand {
+    display: flex;
+    width: 168px;
+    height: 30px;
+    flex: none;
+    align-items: center;
+  }
+
+  .brand img,
+  .site-header .brand img {
+    width: 168px !important;
+    height: 30px;
+    object-fit: contain;
+  }
+
+  .desktop-nav {
+    display: flex;
+    width: 1px;
+    height: 39.203px;
+    flex: 1 0 0;
+    align-items: center;
+    justify-content: center;
+    gap: 16px !important;
+    overflow: clip;
+    padding: 6px;
+  }
+
+  .nav-pill {
+    position: relative;
+    display: flex;
+    min-height: 27.203px;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    padding: 4px 10px !important;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: #0a0b0b;
+    font-family: "Inter Display", Inter, sans-serif;
+    font-size: 16px !important;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    line-height: 19.2px;
+    white-space: nowrap;
+    transition:
+      background-color 450ms cubic-bezier(0.44, 0, 0.56, 1),
+      box-shadow 450ms cubic-bezier(0.44, 0, 0.56, 1);
+  }
+
+  .desktop-nav .nav-pill:nth-child(1) {
+    width: 63.922px;
+  }
+
+  .desktop-nav .nav-pill:nth-child(2) {
+    width: 64.688px;
+  }
+
+  .desktop-nav .nav-pill:nth-child(3) {
+    width: 75.438px;
+  }
+
+  .desktop-nav .nav-pill:nth-child(4) {
+    width: 101.031px;
+  }
+
+  .desktop-nav .nav-pill:nth-child(5) {
+    width: 79.781px;
+  }
+
+  .nav-pill:hover,
+  .nav-pill:focus-visible,
+  .nav-pill[aria-current="page"] {
+    background: #f8f9fa;
+    box-shadow: inset 0 0 0 1px rgba(10, 11, 11, 0.1);
+  }
+
+  .nav-pill:focus-visible,
+  .brand:focus-visible,
+  .header-cta:focus-visible,
+  .menu-toggle:focus-visible {
+    outline: 1px auto Highlight;
+    outline-offset: 1px;
+  }
+
+  .header-cta {
+    position: relative;
+    display: flex !important;
+    width: 160.344px !important;
+    min-width: 160.344px;
+    height: 39.203px !important;
+    min-height: 39.203px !important;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    overflow: clip;
+    padding: 10px 20px !important;
+    border-radius: 10px;
+    background: linear-gradient(180deg, #0a0b0b 0%, #363b3c 100%);
+    box-shadow: inset 0 0 0 1px #0a0b0b;
+    color: #fff;
+    corner-shape: superellipse(1.5);
+  }
+
+  .header-cta__track {
+    position: relative;
+    display: flex;
+    width: 120.344px;
+    height: 19.203px;
+    flex: none;
+    flex-direction: column;
+    gap: 30px;
+    font-family: "Inter Display", Inter, sans-serif;
+    font-size: 16px !important;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    line-height: 19.2px;
+    text-align: center;
+    white-space: nowrap;
+    transition: transform 350ms cubic-bezier(0.44, 0, 0.56, 1);
+  }
+
+  .header-cta__track > span {
+    display: block;
+    width: 100%;
+    height: 19.203px;
+    flex: none;
+  }
+
+  .header-cta:hover .header-cta__track,
+  .header-cta:focus-visible .header-cta__track {
+    transform: translateY(-49.203px);
+  }
+
+  .menu-toggle,
+  .nav-overlay {
+    display: none;
+  }
+
+  @media (min-width: 810px) and (max-width: 1199px) {
+    .site-header {
+      position: fixed;
+      inset: 0 0 auto;
+      height: 79.203px !important;
+    }
+
+    .site-header__surface {
+      height: 79.203px;
+      padding: 0;
+      background: #fff;
+    }
+
+    .site-header__inner.container {
+      width: 100% !important;
+      max-width: none !important;
+      min-height: 79.203px !important;
+      padding: 20px 30px !important;
+    }
+
+    .site-header__brand-slot,
+    .site-header__actions {
+      max-width: none;
+    }
+
+    .desktop-nav {
+      display: none !important;
+    }
+
+    .header-cta {
+      display: flex !important;
+    }
+
+    .header-cta__track > span:last-child {
+      display: none;
+    }
+
+    .header-cta:hover .header-cta__track,
+    .header-cta:focus-visible .header-cta__track {
+      transform: none;
+    }
+
+    .menu-toggle {
+      position: relative;
+      display: flex !important;
+      width: 39px !important;
+      height: 39px !important;
+      flex: none;
+      align-items: center;
+      justify-content: flex-start;
+      overflow: clip;
+      padding: 6px;
+      border: 0;
+      border-radius: 10px;
+      background: #f8f9fa;
+      box-shadow: inset 0 0 0 1px rgba(10, 11, 11, 0.1);
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      position: absolute;
+      z-index: 1;
+      left: 10px;
+      width: 20px;
+      height: 2px;
+      border-radius: 40% / 400%;
+      background: #5d5d5d;
+      transform-origin: 50% 50%;
+      transition:
+        inset 450ms cubic-bezier(0.44, 0, 0.56, 1),
+        transform 450ms cubic-bezier(0.44, 0, 0.56, 1);
+    }
+
+    .menu-toggle span:first-child {
+      top: 14px;
+    }
+
+    .menu-toggle span:last-child {
+      bottom: 14px;
+    }
+
+    .menu-toggle[aria-expanded="true"] span:first-child {
+      top: 18.5px;
+      transform: rotate(45deg);
+    }
+
+    .menu-toggle[aria-expanded="true"] span:last-child {
+      bottom: 18.5px;
+      transform: rotate(-45deg);
+    }
+
+    .nav-overlay {
+      position: fixed;
+      z-index: 1;
+      inset: 0;
+      display: block;
+      visibility: hidden;
+      transition: visibility 0s linear 450ms;
+    }
+
+    .nav-scrim {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      border: 0;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(5px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 450ms cubic-bezier(0.44, 0, 0.56, 1);
+    }
+
+    .mobile-nav {
+      position: absolute;
+      z-index: 1;
+      top: 79px;
+      right: 0;
+      left: 0;
+      display: flex;
+      width: 100%;
+      height: 244.016px;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 16px;
+      overflow: clip;
+      padding: 12px;
+      background: #fff;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-14px);
+      transition:
+        opacity 450ms cubic-bezier(0.22, 1, 0.36, 1),
+        transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .mobile-nav .nav-pill {
+      width: 100%;
+      justify-content: flex-start;
+      padding: 6px 10px !important;
+      white-space: normal;
+    }
+
+    .site-header[data-menu-open="true"] .nav-overlay {
+      visibility: visible;
+      transition-delay: 0s;
+    }
+
+    .site-header[data-menu-open="true"] .nav-scrim {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .site-header[data-menu-open="true"] .mobile-nav {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 809px) {
+    .site-header {
+      position: fixed;
+      inset: 0 0 auto;
+      height: 52px !important;
+    }
+
+    .site-header__surface {
+      height: 52px;
+      padding: 0;
+      background: #fff;
+    }
+
+    .site-header__inner.container {
+      width: 100% !important;
+      max-width: none !important;
+      min-height: 52px !important;
+      padding: 10px 20px !important;
+    }
+
+    .site-header__brand-slot,
+    .site-header__actions {
+      max-width: none;
+    }
+
+    .brand,
+    .brand img,
+    .site-header .brand img {
+      width: 145.594px !important;
+      height: 26px;
+    }
+
+    .desktop-nav,
+    .header-cta {
+      display: none !important;
+    }
+
+    .site-header__actions {
+      gap: 10px;
+    }
+
+    .menu-toggle {
+      position: relative;
+      display: flex !important;
+      width: 32px !important;
+      height: 32px !important;
+      flex: none;
+      align-items: center;
+      justify-content: flex-start;
+      overflow: clip;
+      padding: 6px;
+      border: 0;
+      border-radius: 10px;
+      background: #f8f9fa;
+      box-shadow: inset 0 0 0 1px rgba(10, 11, 11, 0.1);
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      position: absolute;
+      z-index: 1;
+      left: 8px;
+      width: 16px;
+      height: 2px;
+      border-radius: 40% / 400%;
+      background: #5d5d5d;
+      transform-origin: 50% 50%;
+      transition:
+        inset 450ms cubic-bezier(0.44, 0, 0.56, 1),
+        width 450ms cubic-bezier(0.44, 0, 0.56, 1),
+        transform 450ms cubic-bezier(0.44, 0, 0.56, 1);
+    }
+
+    .menu-toggle span:first-child {
+      top: 11px;
+    }
+
+    .menu-toggle span:last-child {
+      bottom: 11px;
+    }
+
+    .menu-toggle[aria-expanded="true"] span {
+      left: 6px;
+      width: 20px;
+    }
+
+    .menu-toggle[aria-expanded="true"] span:first-child {
+      top: 15px;
+      transform: rotate(45deg);
+    }
+
+    .menu-toggle[aria-expanded="true"] span:last-child {
+      bottom: 15px;
+      transform: rotate(-45deg);
+    }
+
+    .nav-overlay {
+      position: fixed;
+      z-index: 1;
+      inset: 0;
+      display: block;
+      visibility: hidden;
+      transition: visibility 0s linear 450ms;
+    }
+
+    .nav-scrim {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      border: 0;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(5px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 450ms cubic-bezier(0.44, 0, 0.56, 1);
+    }
+
+    .mobile-nav {
+      position: absolute;
+      z-index: 1;
+      top: 52px;
+      right: 0;
+      left: 0;
+      display: flex;
+      width: 100%;
+      height: 222.016px;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 10px;
+      overflow: clip;
+      padding: 10px 16px 16px;
+      background: #fff;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-12px);
+      transition:
+        opacity 450ms cubic-bezier(0.22, 1, 0.36, 1),
+        transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .mobile-nav .nav-pill {
+      width: 100%;
+      justify-content: flex-start;
+      padding: 6px 10px !important;
+      white-space: normal;
+    }
+
+    .site-header[data-menu-open="true"] .nav-overlay {
+      visibility: visible;
+      transition-delay: 0s;
+    }
+
+    .site-header[data-menu-open="true"] .nav-scrim {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .site-header[data-menu-open="true"] .mobile-nav {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nav-pill,
+    .header-cta__track,
+    .menu-toggle span,
+    .nav-overlay,
+    .nav-scrim,
+    .mobile-nav {
+      transition-duration: 0.001ms !important;
+    }
+  }
+</style>

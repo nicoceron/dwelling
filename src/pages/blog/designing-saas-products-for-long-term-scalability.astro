@@ -1,0 +1,8 @@
+---
+import BlogArticle from "../../components/BlogArticle.astro";
+import { getBlogPost } from "../../data/blog";
+
+const post = getBlogPost("designing-saas-products-for-long-term-scalability");
+---
+
+<BlogArticle post={post} />

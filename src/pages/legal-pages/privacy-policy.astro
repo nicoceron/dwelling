@@ -1,0 +1,225 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Privacy Policy" description="Launch an automation-focused SaaS website with Worklane. A modern Framer template designed for clarity, speed, and growth.">
+  <div id="hero" class="privacy-page route-page">
+    <section class="privacy-hero" data-reveal>
+      <div class="privacy-container">
+        <div class="privacy-hero__top">
+          <h1 data-reveal-child data-reveal-delay="100">Privacy Policy</h1>
+          <div class="privacy-date" data-reveal-child data-reveal-delay="200">
+            <p>Last updated:</p>
+            <p><time datetime="2026-01-02T00:00:00.000Z" title="January 2, 2026">7 months ago</time></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="privacy-content" data-reveal>
+      <div class="privacy-container">
+        <article class="privacy-prose" data-reveal-child data-reveal-delay="300">
+          <p>At <strong>Worklane</strong>, your privacy is important to us. This privacy policy explains how we collect, use, protect, and manage your information when you use our website, products, and services.</p>
+
+          <h2>Information we collect</h2>
+          <h3>Information you provide</h3>
+          <p>When you interact with Worklane, we may collect information such as your name and email address, company or team details, account and login information, and any messages or feedback you submit.</p>
+          <h3>Information collected automatically</h3>
+          <p>We may also collect limited technical information, including device and browser type, IP address, and general location, and usage data related to features and performance. This information helps us improve reliability, security, and user experience.</p>
+
+          <h2>How we use your information</h2>
+          <p>We use your information to provide and operate Worklane services, improve product performance and features, communicate updates, early access, or support messages, and ensure platform security and prevent misuse. We only collect what is necessary to deliver and improve our services.</p>
+
+          <h2>Cookies and tracking technologies</h2>
+          <p>Worklane uses cookies and similar technologies to remember user preferences, analyze product usage and performance, and improve website functionality. You can control or disable cookies through your browser settings.</p>
+
+          <h2>How we protect your data</h2>
+          <p>We take data security seriously and use industry standard measures to protect your information, including secure servers and encrypted connections, access controls and monitoring, and regular system updates and reviews. While no system is completely risk free, we continuously improve our safeguards.</p>
+
+          <h2>Data sharing and third parties</h2>
+          <p>We do not sell or rent your personal data. We may share limited information with trusted third-party services only when necessary to operate and maintain our platform, process communications or analytics, or comply with legal obligations. All partners are required to follow strict data protection standards.</p>
+
+          <h2>Data retention</h2>
+          <p>We retain your information only as long as necessary to provide our services and meet legal and operational requirements. You may request deletion of your data at any time.</p>
+
+          <h2>Your rights</h2>
+          <p>Depending on your location, you may have the right to access the data we hold about you, request corrections or updates, request deletion of your information, and withdraw consent for certain data uses. You can contact us to exercise these rights.</p>
+
+          <h2>Children’s privacy</h2>
+          <p>Worklane is not intended for children under the age of 13. We do not knowingly collect personal information from children.</p>
+
+          <h2>Changes to this policy</h2>
+          <p>We may update this privacy policy as Worklane evolves. Any changes will be reflected on this page with an updated revision date.</p>
+
+          <h2>Contact us</h2>
+          <p>If you have questions or concerns about this privacy policy or your data, please contact us at <a href="mailto:support@example.com" rel="noopener"><strong>support@example.com</strong></a></p>
+        </article>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .privacy-page {
+    background: var(--paper);
+  }
+
+  .privacy-page h1,
+  .privacy-page h2,
+  .privacy-page h3 {
+    letter-spacing: normal;
+    font-feature-settings: "blwf", "cv03", "cv04", "cv09", "cv11";
+  }
+
+  .privacy-page h1 {
+    text-wrap: balance;
+  }
+
+  .privacy-page p {
+    color: #545454;
+    font-feature-settings: "blwf", "cv03", "cv04", "cv09", "cv11";
+  }
+
+  .privacy-hero {
+    padding: 120px 0 150px;
+  }
+
+  .privacy-container {
+    width: 100%;
+    max-width: 760px;
+    margin-inline: auto;
+    padding-inline: 30px;
+  }
+
+  .privacy-hero__top {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 700px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .privacy-hero h1 {
+    font-size: 62px;
+    line-height: 1.1;
+  }
+
+  .privacy-date {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 10px;
+    color: #545454;
+    font-size: 20px;
+    line-height: 1.4;
+  }
+
+  .privacy-content {
+    padding-bottom: 150px;
+  }
+
+  .privacy-prose {
+    width: 100%;
+    max-width: 700px;
+  }
+
+  .privacy-prose p {
+    margin-top: 10px;
+    color: #545454;
+    font-size: 18px;
+    line-height: 1.4;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .privacy-prose > p:first-child {
+    margin-top: 0;
+  }
+
+  .privacy-prose h2 {
+    margin-top: 50px;
+    font-size: 36px;
+    line-height: 1.2;
+  }
+
+  .privacy-prose h3 {
+    margin-top: 50px;
+    font-size: 30px;
+    line-height: 1.2;
+  }
+
+  .privacy-prose strong {
+    color: inherit;
+    font-weight: 700;
+  }
+
+  .privacy-prose a {
+    color: var(--ink);
+    text-decoration: none;
+    transition: color 350ms cubic-bezier(.44, 0, .56, 1);
+  }
+
+  .privacy-prose a strong {
+    color: var(--ink);
+  }
+
+  .privacy-prose a:hover,
+  .privacy-prose a:focus-visible {
+    color: #161717;
+  }
+
+  .privacy-prose a:focus-visible {
+    outline: 1px auto Highlight;
+    outline-offset: 1px;
+  }
+
+  @media (min-width: 810px) and (max-width: 1199px) {
+    .privacy-hero {
+      padding: 140px 0 80px;
+    }
+
+    .privacy-hero h1 {
+      font-size: 50px;
+      line-height: 1.1;
+    }
+
+    .privacy-content {
+      padding-bottom: 120px;
+    }
+  }
+
+  @media (max-width: 809px) {
+    .privacy-container {
+      padding-inline: 20px;
+    }
+
+    .privacy-hero {
+      padding: 102px 0 60px;
+    }
+
+    .privacy-hero h1 {
+      font-size: 40px;
+      line-height: 1.1;
+    }
+
+    .privacy-date {
+      font-size: 18px;
+      line-height: 1.4;
+    }
+
+    .privacy-content {
+      padding-bottom: 100px;
+    }
+
+    .privacy-prose h2 {
+      font-size: 32px;
+      line-height: 1.2;
+    }
+
+    .privacy-prose h3 {
+      font-size: 26px;
+      line-height: 1.2;
+    }
+  }
+</style>

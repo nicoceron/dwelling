@@ -1,0 +1,65 @@
+---
+interface Props {
+  href?: string;
+  variant?: "dark" | "light" | "ghost" | "dark-ghost";
+  icon?: string;
+  showIcon?: boolean;
+  class?: string;
+  type?: "button" | "submit";
+  ariaLabel?: string;
+  [key: `data-${string}`]: string | boolean | undefined;
+}
+
+const {
+  href,
+  variant = "dark",
+  icon = "→",
+  showIcon = true,
+  class: className = "",
+  type = "button",
+  ariaLabel,
+  ...attributes
+} = Astro.props;
+const classes = ["button", variant !== "dark" && `button--${variant}`, !showIcon && "button--no-icon", className]
+  .filter(Boolean)
+  .join(" ");
+const rightArrowPath = "M.938 6.574h12.486L8.462 1.612A.938.938 0 1 1 9.788.286L16.35 6.85a.937.937 0 0 1 0 1.325l-6.562 6.563a.938.938 0 0 1-1.326-1.326l4.962-4.962H.938a.937.937 0 1 1 0-1.875Z";
+---
+
+{
+  href ? (
+    <a class={classes} href={href} aria-label={ariaLabel} data-motion-button {...attributes}>
+      {showIcon && (
+        <span class="button__icon-window" aria-hidden="true">
+          <span class="button__icon-track">
+            <span class="button__icon-copy button__icon-copy--default">{icon === "→" ? <svg width="17" height="15" viewBox="0 0 17 15" aria-hidden="true"><path fill="currentColor" d={rightArrowPath} /></svg> : icon}</span>
+            <span class="button__icon-copy button__icon-copy--hover">{icon === "→" ? <svg width="17" height="15" viewBox="0 0 17 15" aria-hidden="true"><path fill="currentColor" d={rightArrowPath} /></svg> : icon}</span>
+          </span>
+        </span>
+      )}
+      <span class="button__label-window">
+        <span class="button__label-track">
+          <span class="button__label button__label--default"><slot /></span>
+          <span class="button__label button__label--hover" aria-hidden="true"><slot /></span>
+        </span>
+      </span>
+    </a>
+  ) : (
+    <button class={classes} type={type} aria-label={ariaLabel} data-motion-button {...attributes}>
+      {showIcon && (
+        <span class="button__icon-window" aria-hidden="true">
+          <span class="button__icon-track">
+            <span class="button__icon-copy button__icon-copy--default">{icon === "→" ? <svg width="17" height="15" viewBox="0 0 17 15" aria-hidden="true"><path fill="currentColor" d={rightArrowPath} /></svg> : icon}</span>
+            <span class="button__icon-copy button__icon-copy--hover">{icon === "→" ? <svg width="17" height="15" viewBox="0 0 17 15" aria-hidden="true"><path fill="currentColor" d={rightArrowPath} /></svg> : icon}</span>
+          </span>
+        </span>
+      )}
+      <span class="button__label-window">
+        <span class="button__label-track">
+          <span class="button__label button__label--default"><slot /></span>
+          <span class="button__label button__label--hover" aria-hidden="true"><slot /></span>
+        </span>
+      </span>
+    </button>
+  )
+}

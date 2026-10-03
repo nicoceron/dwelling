@@ -1,0 +1,49 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import TemplateBadge from "../components/TemplateBadge.astro";
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  hideHeader?: boolean;
+  hideFooter?: boolean;
+  noIndex?: boolean;
+}
+
+const {
+  title = "Worklane – Workflow Automation SaaS Framer Template",
+  description = "Manage daily tasks, client work, and progress in one place with Worklane.",
+  hideHeader = false,
+  hideFooter = false,
+  noIndex = false,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    {noIndex && <meta name="robots" content="noindex" />}
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="icon" href="/assets/framerusercontent.com/images/YLGmbFJLUc7ePzTZKDiAgLudS0A.svg" />
+    <title>{title}</title>
+    <script is:inline>
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        document.documentElement.classList.add("motion-ready");
+      }
+    </script>
+  </head>
+  <body>
+    {!hideHeader && <Header />}
+    <main id="main-content"><slot /></main>
+    {!hideFooter && <Footer />}
+    <TemplateBadge />
+    <script>
+      import "../scripts/site";
+    </script>
+  </body>
+</html>

@@ -1,0 +1,8 @@
+---
+import BlogArticle from "../../components/BlogArticle.astro";
+import { getBlogPost } from "../../data/blog";
+
+const post = getBlogPost("how-storytelling-builds-trust-in-saas-brands");
+---
+
+<BlogArticle post={post} />

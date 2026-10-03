@@ -1,0 +1,91 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Button from "../components/Button.astro";
+const requestDemoFormEndpoint = import.meta.env.PUBLIC_REQUEST_DEMO_FORM_ENDPOINT?.trim();
+
+const clientLogos = [
+  ["/assets/framerusercontent.com/images/1V1LJixKLDvrxh8xOoZbrIVvCI.svg", "Hudson"], ["/assets/framerusercontent.com/images/oRN2uzufZi3DeitkcAnHnWgN18M.svg", "Seoul"], ["/assets/framerusercontent.com/images/XHQ3C2x8n6FxPNFotbBGxYoXyPk.svg", "thru"], ["/assets/framerusercontent.com/images/htiHsU4ECQNNvBhtKRtPdaWCxhI.svg", "phoenix"], ["/assets/framerusercontent.com/images/H2xCDaX7cGo1G5Bzx8nkkIhDNY.svg", "London"], ["/assets/framerusercontent.com/images/fWlNTIHBRiUW4WfvrDUFrCApUU.svg", "To"], ["/assets/framerusercontent.com/images/1LhjPHRS5aDykP9rN1qLssbZ2W4.svg", "Client"], ["/assets/framerusercontent.com/images/RIHN1KQzftKkt5zj1YxEM8Yf9NY.svg", "Client"], ["/assets/framerusercontent.com/images/FapjXnOUprkUxWJ9o8skAlFA.svg", "Client"],
+];
+---
+
+<BaseLayout title="Worklane – Workflow Automation SaaS Framer Template" description="Launch an automation-focused SaaS website with Worklane. A modern Framer template designed for clarity, speed, and growth.">
+  <div class="demo-page">
+    <section class="demo-hero" data-reveal>
+      <div class="demo-hero__inner">
+        <div class="demo-intro" data-reveal-child data-reveal-delay="100"><span class="eyebrow"><i class="eyebrow__dot" aria-hidden="true"></i><span>Live walkthrough</span><i class="eyebrow__dot" aria-hidden="true"></i></span><h1>Request a demo</h1><p>Get a live walkthrough of the platform and see how teams manage tasks, clients, and revenue in one place.</p></div>
+        <form class="demo-form" action={requestDemoFormEndpoint || undefined} method="POST" data-local-form data-reveal-child data-reveal-delay="250">
+          <div class="demo-form__fields">
+            <label class="field"><span>Name*</span><div class="input-shell"><input type="text" name="Name" placeholder="Your full name" required /></div></label><label class="field"><span>Email address*</span><div class="input-shell"><input type="email" name="Email address" placeholder="Your email address" required /></div></label>
+            <label class="field"><span>Company name*</span><div class="input-shell"><input type="text" name="Company" placeholder="Your company name" required /></div></label><label class="field"><span>Team size*</span><div class="input-shell"><input type="text" name="Team Size" placeholder="e.g. 5–10" required /></div></label>
+            <label class="field"><span>Job title</span><div class="input-shell"><input type="text" name="Job Title" placeholder="Your role or title" /></div></label><label class="field"><span>Current tools</span><div class="input-shell"><input type="text" name="Current Tools" placeholder="Tools you currently use" /></div></label>
+            <label class="field field--wide"><span>Phone number</span><div class="input-shell"><input type="tel" name="Phone Number" placeholder="Your phone number" /></div></label>
+            <label class="field field--wide field--message"><span>What do you want to use our product for?*</span><div class="input-shell"><textarea name="Message" placeholder="Briefly describe your use case, current process, and what you want to improve." required></textarea></div></label>
+            <label class="consent field--wide"><input type="checkbox" name="Privacy Policy" /> <span>I agree to receive emails and accept the <a href="/legal-pages/privacy-policy">privacy policy</a>.</span></label>
+          </div>
+          <Button type="submit" icon="→">Request demo</Button><p class="form-status" aria-live="polite"></p>
+        </form>
+        <div class="trusted" data-reveal-child data-reveal-delay="600"><strong>Trusted by teams worldwide</strong><div class="trusted__viewport"><div class="trusted__logos">{[...clientLogos, ...clientLogos].map(([src, alt], index) => <img src={src} width="92" height="20" alt={index < clientLogos.length ? alt : ""} aria-hidden={index >= clientLogos.length ? "true" : undefined} />)}</div></div></div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .demo-hero { min-height:1447.88px; padding:120px 20px 0; }
+  .demo-hero__inner { width:700px; max-width:100%; margin:0 auto; }
+  .demo-intro { display:grid; justify-items:center; text-align:center; }
+  .demo-intro h1 { width:630px; margin-top:10px; font-size:62px; line-height:68.2px; }
+  .demo-intro p { width:630px; max-width:100%; margin-top:16px; color:#545454; font-family:"Inter Display",sans-serif; font-size:20px; font-weight:500; line-height:28px; text-wrap:balance; }
+  .demo-form { width:700px; height:833.22px; margin-top:50px; padding:50px; border:0; border-radius:20px; background:#f8f9fa; box-shadow:inset 0 0 0 1px var(--line); }
+  .demo-form__fields { display:grid; grid-template-columns:repeat(2,1fr); row-gap:30px; column-gap:30px; }
+  .demo-form .field { display:flex; min-height:89.2px; flex-direction:column; gap:10px; }
+  .demo-form .field > span { font-family:"Inter Display",sans-serif; font-size:18px; font-weight:500; line-height:25.2px; }
+  .demo-form .input-shell { height:54px; min-height:54px; border:1px solid rgba(10,11,11,.1); border-radius:11px; background:#fff; }
+  .demo-form input:not([type="checkbox"]) { width:calc(100% - 40px); height:34px; min-height:34px; margin:10px 20px; padding:0; border:0; border-radius:0; background:transparent; color:var(--ink); font-family:"Inter Display",sans-serif; font-size:16px; line-height:19.2px; outline:0; }
+  .demo-form textarea { width:100%; height:100px; min-height:100px; margin:0; padding:20px; border:0; border-radius:0; background:transparent; color:var(--ink); font-family:"Inter Display",sans-serif; font-size:16px; line-height:19.2px; outline:0; resize:none; }
+  .demo-form input::placeholder,.demo-form textarea::placeholder { color:#a4a4a4; opacity:1; }
+  .demo-form .field--wide { grid-column:1/-1; }
+  .demo-form .field--message { min-height:135.2px; gap:10px; }
+  .demo-form .field--message .input-shell { height:100px; min-height:100px; }
+  .demo-form .consent { display:flex; min-height:19.2px !important; flex-direction:row; align-items:flex-start; gap:6px; margin-top:-10px; font-family:"Inter Display",sans-serif; font-size:16px; font-weight:500; letter-spacing:.3px; line-height:19.2px; }
+  .demo-form .consent input { width:16px; height:16px; flex:0 0 16px; margin:0; accent-color:var(--ink); }
+  .demo-form .consent a { text-decoration:underline; }
+  :global(.demo-form > .button) { width:198.02px; height:52px; min-height:52px; margin-top:30px; padding:4px 18px 4px 4px; border:0; border-radius:16px; background:linear-gradient(180deg,#0a0b0b 0%,#363b3c 100%); color:#fff; font-family:"Inter Display",sans-serif; font-size:18px; line-height:23.4px; }
+  :global(.demo-form > .button .button__icon-window) { width:44px; height:44px; flex-basis:44px; border-radius:12px; background:linear-gradient(180deg,#fff 0%,#c9c9c9 100%); color:var(--ink); }
+  .demo-form .form-status { margin-top:10px; color:#9b1c1c; font-size:14px; line-height:1.4; }
+  .demo-form .form-status:empty { display:none; }
+  .demo-form .form-status[data-submit-state="success"] { color:#276b20; }
+  .demo-form .form-status[data-submit-state="pending"] { color:#545454; }
+  .trusted { display:grid; justify-items:center; margin-top:50px; overflow:hidden; text-align:center; }
+  .trusted strong { font-family:"Stack Sans Headline",sans-serif; font-size:18px; font-weight:600; line-height:21.6px; }
+  .trusted__viewport { width:100%; margin-top:20px; overflow:hidden; }
+  .trusted__logos { display:flex; width:max-content; align-items:center; gap:40px; margin:0 auto; animation:trusted-logos 60s linear infinite; }
+  .trusted__logos img { width:92px; height:20px; object-fit:contain; }
+  .trusted__logos img:nth-child(9n) { width:110px; }
+  @keyframes trusted-logos { to { transform:translateX(calc(-50% - 20px)); } }
+  @media (prefers-reduced-motion:reduce) { .trusted__logos { animation:none; } }
+  .demo-page .eyebrow,.demo-page .eyebrow__dot { box-sizing:border-box; }
+  .demo-page .eyebrow { width:179.23px; height:32.8px; padding:8px 18px; gap:8px; font-family:"Inter Display",sans-serif; font-size:14px; font-weight:500; letter-spacing:.3px; line-height:16.8px; white-space:nowrap; }
+  .demo-page .eyebrow__dot { display:block; width:4px; height:4px; flex:0 0 4px; border-radius:50%; background:currentColor; }
+  @media (max-width:1199px) {
+    .demo-hero { min-height:1344.67px; padding-top:140px; }
+    .demo-intro h1 { font-size:50px; line-height:55px; }
+    .demo-form { width:700px; height:793.22px; margin-top:30px; padding:30px; }
+    .trusted { margin-top:30px; }
+  }
+  @media (max-width:809px) {
+    .demo-hero { min-height:0; padding:102px 20px 100px; }
+    .demo-hero__inner { width:min(100%,720px); }
+    .demo-intro h1 { width:90%; margin-top:10px; font-size:40px; line-height:44px; }
+    .demo-intro p { width:90%; margin-top:16px; font-size:18px; line-height:25.2px; }
+    .demo-form { width:100%; height:auto; margin-top:30px; padding:20px; }
+    .demo-form__fields { grid-template-columns:1fr; row-gap:30px; }
+    .demo-form .field--wide { grid-column:auto; }
+    .demo-form .field--message { min-height:135.2px; }
+    .demo-form .consent { margin-top:-10px; }
+    :global(.demo-form > .button) { display:flex; }
+    .trusted { margin-top:30px; }
+    .trusted__viewport { margin-top:20px; }
+    .trusted strong { font-size:16px; line-height:19.2px; }
+  }
+</style>

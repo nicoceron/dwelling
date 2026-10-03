@@ -1,0 +1,8 @@
+---
+import BlogArticle from "../../components/BlogArticle.astro";
+import { getBlogPost } from "../../data/blog";
+
+const post = getBlogPost("using-microinteractions-to-improve-saas-usability");
+---
+
+<BlogArticle post={post} />

@@ -1,0 +1,8 @@
+---
+import BlogArticle from "../../components/BlogArticle.astro";
+import { getBlogPost } from "../../data/blog";
+
+const post = getBlogPost("how-smart-automation-reduces-friction-in-saas-products");
+---
+
+<BlogArticle post={post} />
