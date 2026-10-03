@@ -331,7 +331,7 @@ const faqItems = [
       <p class="eyebrow">FAQs</p>
       <h2 class="display-lg">Answers to common questions</h2>
       <div class="faq-preview-section__cta">
-        <p>Can’t find your answer?</p>
+        <h3>Can’t find your answer?</h3>
         <Button href="/contact" variant="dark">Talk to us</Button>
       </div>
     </div>
@@ -366,7 +366,7 @@ const faqItems = [
     let previousTime = performance.now();
     let pointerId: number | null = null;
     let pointerX = 0;
-    let hovered = false;
+    let visible = false;
 
     const measure = () => {
       cycleWidth = cards.length >= 10 ? cards[5].offsetLeft - cards[0].offsetLeft : 0;
@@ -388,6 +388,10 @@ const faqItems = [
     reviewTrack.style.animation = "none";
     measure();
     window.addEventListener("resize", measure, { passive: true });
+    const visibilityObserver = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+    });
+    visibilityObserver.observe(reviewViewport);
 
     reviewViewport.addEventListener("pointerdown", (event) => {
       if (mobile.matches || (event.pointerType === "mouse" && event.button !== 0)) return;
@@ -410,8 +414,6 @@ const faqItems = [
     };
     reviewViewport.addEventListener("pointerup", finishDrag);
     reviewViewport.addEventListener("pointercancel", finishDrag);
-    reviewViewport.addEventListener("mouseenter", () => { hovered = true; });
-    reviewViewport.addEventListener("mouseleave", () => { hovered = false; });
     reviewViewport.addEventListener("keydown", (event) => {
       if (mobile.matches || !["ArrowLeft", "ArrowRight"].includes(event.key)) return;
       event.preventDefault();
@@ -422,9 +424,9 @@ const faqItems = [
     const advance = (time: number) => {
       const elapsed = Math.min(time - previousTime, 100);
       previousTime = time;
-      if (!mobile.matches && !reducedMotion.matches && !hovered && pointerId === null &&
-          !reviewViewport.matches(":focus-within") && document.visibilityState === "visible") {
-        offset = normalize(offset - elapsed * 0.05);
+      if (visible && !mobile.matches && !reducedMotion.matches && pointerId === null &&
+          document.visibilityState === "visible") {
+        offset = normalize(offset - elapsed * 0.02);
         draw();
       }
       requestAnimationFrame(advance);
@@ -539,7 +541,7 @@ const faqItems = [
   .faq-preview-section__grid { display: grid; grid-template-columns: .78fr 1.22fr; gap: 100px; align-items: start; }
   .faq-preview-section__copy h2 { max-width: 430px; margin-top: 18px; }
   .faq-preview-section__cta { margin-top: 150px; }
-  .faq-preview-section__cta p { margin-bottom: 15px; font-size: 18px; font-weight: 600; }
+  .faq-preview-section__cta h3 { margin-bottom: 15px; font-size: 18px; font-weight: 600; }
   .faq-preview-section__list { margin: 0; }
 
   @media (max-width: 1199px) and (min-width: 810px) {
@@ -698,6 +700,9 @@ const faqItems = [
   .ai-section__background--side-right { right: 120px; transform: scaleX(-1); }
   .ai-section__content { width: min(100%, 1080px); min-height: 1155px; margin: 0 auto; padding-top: 150px; gap: 50px; }
   .ai-section__content { margin-inline: auto; padding-right: 0; padding-bottom: 0; padding-left: 0; }
+  @media (min-width: 1200px) {
+    .ai-section__content { padding-bottom: 150px; }
+  }
   .ai-section__top { align-self: center; z-index: 1; }
   .ai-section__top { position: relative; width: 180px; height: 180px; flex: 0 0 180px; border-radius: 20px; background: #141416; box-shadow: inset 0 0 80px rgba(103, 76, 208, .18); }
   .ai-section__robot { display: grid; width: 100%; height: 100%; place-items: center; }
@@ -757,14 +762,12 @@ const faqItems = [
   .review-card { height: 370px; min-height: 370px; flex-basis: 370px; border-radius: 20px; }
   .reviews-viewport { width: 100%; overflow: hidden; }
   .reviews-grid { display: flex; width: max-content; margin: 50px 0 0; animation: reviews-ticker 40s linear infinite; will-change: transform; }
-  .reviews-viewport:hover .reviews-grid,
-  .reviews-viewport:focus-within .reviews-grid { animation-play-state: paused; }
   @keyframes reviews-ticker { to { transform: translateX(-2000px); } }
 
   .faq-preview-section { padding: 0 30px 150px; }
   .faq-preview-section__grid { width: min(100%, 1240px); min-height: 394px; padding: 0 30px; box-sizing: border-box; grid-template-columns: 560px 560px; gap: 60px; }
   .faq-preview-section__cta { width: 300px; height: 162.797px; margin-top: 30px; padding: 30px; border-radius: 20px; background: #f8f9fa; }
-  .faq-preview-section__cta p { margin: 0 0 20px; font-size: 22px; font-weight: 600; line-height: 1.4; }
+  .faq-preview-section__cta h3 { margin: 0 0 20px; font-size: 22px; font-weight: 600; line-height: 1.4; }
   .faq-preview-section__cta :global(.button) { width: 157.453px; height: 52px; min-height: 52px; }
   .reviews-desktop-break { display: inline; }
   .ai-section__title { margin-top: 10px; }
@@ -798,7 +801,7 @@ const faqItems = [
   .faq-preview-section__copy h2 { margin-top: 10px; }
 
   @media (min-width: 810px) {
-    :global(.faq-preview-section__list) { position: relative; top: 20px; height: 394.406px; gap: 20px; margin-top: 0; }
+    :global(.faq-preview-section__list) { position: relative; top: 20px; min-height: 394.406px; height: auto; gap: 20px; margin-top: 0; }
     :global(.faq-preview-section__list .faq-item) { border-bottom: 0; }
     :global(.faq-preview-section__list .faq-item button) { height: 46px; min-height: 46px; gap: 10px; padding: 0; font-size: 18px; font-weight: 600; line-height: 1.2; }
     :global(.faq-preview-section__list .faq-item__title) { padding: 12px 26px; }
@@ -912,7 +915,7 @@ const faqItems = [
     .faq-preview-section__list { width: 100%; height: auto; overflow: visible; }
     .faq-preview-section__copy h2 { max-width: none; font-size: 36px; line-height: 1.2; }
     .faq-preview-section__cta { width: 300px; height: 122px; margin-top: 10px; padding: 20px; border-radius: 16px; }
-    .faq-preview-section__cta p { margin-bottom: 10px; font-size: 20px; line-height: 1.4; }
+    .faq-preview-section__cta h3 { margin-bottom: 10px; font-size: 20px; line-height: 1.4; }
     .faq-preview-section__cta :global(.button) { height: 44px; min-height: 44px; }
     :global(.faq-preview-section__list) { display: flex; height: auto; gap: 20px; overflow: visible; }
     :global(.faq-preview-section__list .faq-item) { border-bottom: 0; }
@@ -968,7 +971,7 @@ const faqItems = [
   .use-case-section { overflow: visible; }
   .use-case-section__copy > p:not(.eyebrow) { text-wrap: balance; }
   .use-case-list { gap: 10px; margin-top: 40px; }
-  .use-case-list span, .use-case-list button { padding: 5px 16px; border-radius: 10px; background: var(--wash); font-size: 14px; line-height: 1.2; }
+  .use-case-list span, .use-case-list button { padding: 6px 16px; border: 0; border-radius: 10px; background: var(--wash); font-size: 14px; line-height: 1.2; letter-spacing: .3px; }
   .use-case-list__more { border-color: var(--ink) !important; background: var(--ink) !important; color: #fff; }
 
   .pricing-section__heading h2 { text-wrap: balance; }
@@ -998,6 +1001,10 @@ const faqItems = [
   .reviews-viewport { width: calc(100% + 200px); margin-left: -100px; cursor: grab; touch-action: pan-y; }
   .reviews-viewport[data-dragging] { cursor: grabbing; }
   .reviews-grid { margin-left: -49px; }
+  @media (min-width: 1200px) {
+    .reviews-section { padding-top: 170px; padding-bottom: 130px; }
+    .reviews-grid { margin-left: 70px; }
+  }
   .review-card:not(.review-card--visual) { background: var(--wash); }
   .review-card__photo { opacity: .65; }
   .review-card--visual::after { background: linear-gradient(rgba(7,7,10,.28), rgba(7,7,10,.72)); }

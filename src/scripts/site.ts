@@ -44,13 +44,16 @@ function setupScrollLinkedMotion() {
     frame = 0;
     const viewportHeight = window.innerHeight;
     targets.forEach((target) => {
-      const rect = target.getBoundingClientRect();
+      const section = target.closest<HTMLElement>("[data-scroll-parallax-section]");
+      const rect = (section ?? target).getBoundingClientRect();
       const from = Number(target.dataset.scrollFrom ?? 0);
       const to = Number(target.dataset.scrollTo ?? 0);
       const threshold = Number(target.dataset.scrollThreshold ?? 0);
       const start = viewportHeight - rect.height * threshold;
       const end = -rect.height * (1 - threshold);
-      const progress = Math.min(1, Math.max(0, (start - rect.top) / Math.max(1, start - end)));
+      const progress = section
+        ? Math.min(1, Math.max(0, -rect.top / Math.max(1, rect.height)))
+        : Math.min(1, Math.max(0, (start - rect.top) / Math.max(1, start - end)));
       const y = from + (to - from) * progress;
       target.style.setProperty("--scroll-linked-y", `${y.toFixed(3)}px`);
     });
